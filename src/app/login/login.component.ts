@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit(userData: Object): void {
     // sent to back-end
-
     this.loginForm.reset();
   }
 }
