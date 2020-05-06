@@ -3,20 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { CarComponent } from './cars/car/car.component';
-import { CarDetailsComponent } from './cars/car-details/car-details.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {
-    path: 'car',
-    component: CarComponent,
-  },
+  { path: 'chat', component: ChatComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
