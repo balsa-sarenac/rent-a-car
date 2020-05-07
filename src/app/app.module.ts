@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ChatComponent } from './chat/chat.component';
+import { RequestsComponent } from './requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ChatComponent } from './chat/chat.component';
     LoginComponent,
     RegisterComponent,
     ChatComponent,
+    RequestsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
