@@ -1,0 +1,24 @@
+<div class="col-sm-6">
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Car</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let req of requests">
+        <td>{{ req.car }}</td>
+        <td>{{ req.date }}</td>
+        <td>{{ req.status }}</td>
+        <td>
+          <button *ngIf="req.status == 'PENDING'" class="btn btn-dark">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
