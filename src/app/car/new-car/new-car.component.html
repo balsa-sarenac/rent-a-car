@@ -1,0 +1,139 @@
+<div class="d-flex p-2 justify-content-center">
+   <form
+      [formGroup]="newCarForm"
+      class="needs-validation col-sm-8"
+      (ngSubmit)="onSubmit(newCarForm.value)"
+   >
+      <div class="form-row">
+         <div class="form-group col-sm-6">
+            <label for="mark">Mark</label>
+            <select class="form-control" formControlName="markId" id="mark">
+               <option *ngFor="let mark of marks" [value]="mark.id">{{
+                  mark.name
+               }}</option>
+            </select>
+         </div>
+         <div class="form-group col-sm-6">
+            <label for="model">Model</label>
+            <select class="form-control" formControlName="modelId" id="model">
+               <option *ngFor="let model of models" [value]="model.id">{{
+                  model.name
+               }}</option>
+            </select>
+         </div>
+      </div>
+      <div class="form-row">
+         <div class="form-group col-sm-6">
+            <label for="fuel">Fuel</label>
+            <select class="form-control" formControlName="fuelId" id="fuel">
+               <option *ngFor="let fuel of fuels" [value]="fuel.id">{{
+                  fuel.type
+               }}</option>
+            </select>
+         </div>
+         <div class="form-group col-sm-6">
+            <label for="gearbox">Gearbox</label>
+            <select
+               class="form-control"
+               formControlName="gearboxId"
+               id="gearbox"
+            >
+               <option *ngFor="let gearbox of gearboxes" [value]="gearbox.id">{{
+                  gearbox.type
+               }}</option>
+            </select>
+         </div>
+      </div>
+      <div class="form-row">
+         <div class="form-group col-sm-6">
+            <label for="carClass">Class</label>
+            <select
+               class="form-control"
+               formControlName="carClassId"
+               id="carClass"
+            >
+               <option *ngFor="let class of carClasses" [value]="class.id">{{
+                  class.name
+               }}</option>
+            </select>
+         </div>
+         <div class="form-group col-sm-6">
+            <label for="kilometrage">Kilometrage</label>
+            <input
+               type="number"
+               formControlName="kilometrage"
+               name="kilometrage"
+               id="kilometrage"
+               class="form-control"
+            />
+         </div>
+      </div>
+      <div class="form-row">
+         <div class="form-group col-sm-6">
+            <label for="kilometrage">Number of child seats</label>
+            <input
+               type="number"
+               formControlName="numberOfChildSeats"
+               id="numberOfChildSeats"
+               class="form-control"
+            />
+         </div>
+         <div class="form-group col-sm-6">
+            <label for="pickUpPlace">Pick up place</label>
+            <input
+               type="text"
+               formControlName="pickUpPlace"
+               id="pickUpPlace"
+               class="form-control"
+            />
+         </div>
+      </div>
+      <div class="form-row">
+         <div class="form-group col-sm-6">
+            <label for="fromDate">From date</label>
+            <input
+               type="date"
+               formControlName="fromDate"
+               id="fromDate"
+               class="form-control"
+            />
+         </div>
+         <div class="form-group col-sm-6">
+            <label for="toDate">To date</label>
+            <input
+               type="date"
+               formControlName="toDate"
+               id="toDate"
+               class="form-control"
+            />
+         </div>
+      </div>
+      <div class="form-row">
+         <div class="form-group col-sm-6">
+            <label for="allowedKilometrage">Allowed kilometrage</label>
+            <input
+               type="number"
+               formControlName="allowedKilometrage"
+               name="allowedKilometrage"
+               id="allowedKilometrage"
+               class="form-control"
+            />
+         </div>
+         <div class="form-group col-sm-6">
+            <label for="pricelist">Pricelist</label>
+            <select
+               class="form-control"
+               formControlName="priceListId"
+               id="pricelist"
+            >
+               <option>1</option>
+               <option>2</option>
+            </select>
+         </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+         Submit
+      </button>
+   </form>
+</div>
