@@ -1,5 +1,4 @@
 .container {
-   max-width: 1170px;
    margin: auto;
 }
 img {
@@ -11,12 +10,11 @@ img {
    float: left;
    width: 100%;
    overflow: hidden;
-   border-right: 1px solid #c4c4c4;
 }
 .inbox_msg {
-   border: 1px solid #c4c4c4;
    clear: both;
    overflow: hidden;
+   width: 1380px;
 }
 .top_spac {
    margin: 20px 0 0;
@@ -34,7 +32,6 @@ img {
 .headind_srch {
    padding: 10px 29px 10px 20px;
    overflow: hidden;
-   border-bottom: 1px solid #c4c4c4;
 }
 
 .recent_heading h4 {
@@ -95,7 +92,7 @@ img {
    padding: 18px 16px 10px;
 }
 .inbox_chat {
-   height: 550px;
+   height: 500px;
    overflow-y: scroll;
 }
 
@@ -184,6 +181,6 @@ img {
    padding: 0 0 0 0;
 }
 .msg_history {
-   height: 516px;
+   height: 480px;
    overflow-y: auto;
 }
