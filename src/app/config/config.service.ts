@@ -8,6 +8,8 @@ import { Mark } from '../interfaces/mark';
 import { Gearbox } from '../interfaces/gearbox';
 import { Fuel } from '../interfaces/fuel';
 import { CarClass } from '../interfaces/carclass';
+import { Chat } from '../interfaces/chat';
+import { Message } from '../interfaces/message';
 
 @Injectable()
 export class ConfigService {
@@ -31,5 +33,13 @@ export class ConfigService {
 
   getCarClasses() {
     return this.http.get<CarClass[]>("http://localhost:8086/car/carclass/all");
+  }
+
+  getMessages(userId: Number) {
+    return this.http.get<Chat[]>("http://localhost:8086/admin/message/" + userId);
+  }
+
+  sendMessage(message: Message) {
+    return this.http.post<Message>("http://localhost:8086/admin/message", message);
   }
 }
