@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IMessage } from './imessage.message';
+import { ConfigService } from '../config/config.service';
+import { Chat } from '../interfaces/chat';
+import { Message } from '../interfaces/message';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
@@ -7,14 +11,41 @@ import { IMessage } from './imessage.message';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  messages: IMessage[] = [];
+  messages: Message[];
+  chats: Chat[] = [];
+  messageForm;
+  newMessage: Message;
+  companionId: Number;
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.messages.push({ data: "Cao", person: "Marko", recieved: true });
-    this.messages.push({ data: "Poy", person: "Mirko", recieved: false });
-    this.messages.push({ data: "Poy", person: "Marko", recieved: true });
+  constructor(private configService: ConfigService, private formBuilder: FormBuilder) {
+    this.messageForm = this.formBuilder.group({ text: '' });
   }
 
+  ngOnInit(): void {
+    this.getMessages();
+  }
+
+  getMessages() {
+    this.configService.getMessages(1)
+      .subscribe((data: Chat[]) => this.chats = data);
+  }
+
+  change_messages(chat: Chat) {
+    this.companionId = chat.companion.id;
+    this.messages = chat.messages;
+  }
+
+  onSubmit(mess: { text: String; }) {
+    this.newMessage = {
+      id: -1,
+      text: mess.text,
+      sent: new Date(),
+      user: 'sent',
+      companionId: this.companionId
+    };
+    this.configService.sendMessage(this.newMessage)
+      .subscribe((data: Message) => this.messages.push(data));
+
+    this.messageForm.reset();
+  }
 }
