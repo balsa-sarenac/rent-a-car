@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Form, FormGroup } from '@angular/forms';
-import { ConfigService } from 'src/app/config/config.service';
-import { Model } from 'src/app/interfaces/model';
-import { Mark } from 'src/app/interfaces/mark';
-import { Fuel } from 'src/app/interfaces/fuel';
-import { Gearbox } from 'src/app/interfaces/gearbox';
-import { CarClass } from 'src/app/interfaces/carclass';
+import { CarService } from 'src/app/car/shared/car.service';
+import { Model } from 'src/app/car/shared/model';
+import { Mark } from 'src/app/car/shared/mark';
+import { Fuel } from 'src/app/car/shared/fuel';
+import { Gearbox } from 'src/app/car/shared/gearbox';
+import { CarClass } from 'src/app/car/shared/carclass';
 
 @Component({
   selector: 'app-new-car',
@@ -20,7 +20,7 @@ export class NewCarComponent implements OnInit {
   gearboxes: Gearbox[];
   carClasses: CarClass[];
 
-  constructor(private formBuilder: FormBuilder, private configService: ConfigService) {
+  constructor(private formBuilder: FormBuilder, private carService: CarService) {
     this.newCarForm = this.formBuilder.group({
       markId: -1,
       modelId: -1,
@@ -46,15 +46,15 @@ export class NewCarComponent implements OnInit {
   }
 
   getData() {
-    this.configService.getModels()
+    this.carService.getModels()
       .subscribe((data: Model[]) => this.models = data);
-    this.configService.getMarks()
+    this.carService.getMarks()
       .subscribe((data: Mark[]) => this.marks = data);
-    this.configService.getGearboxes()
+    this.carService.getGearboxes()
       .subscribe((data: Gearbox[]) => this.gearboxes = data);
-    this.configService.getFuels()
+    this.carService.getFuels()
       .subscribe((data: Fuel[]) => this.fuels = data);
-    this.configService.getCarClasses()
+    this.carService.getCarClasses()
       .subscribe((data: CarClass[]) => this.carClasses = data);
 
     // pricelist

@@ -1,5 +1,5 @@
 import { Message } from './message';
-import { User } from './user';
+import { User } from '../../car/shared/user';
 
 export interface Chat {
     messages: Message[],
