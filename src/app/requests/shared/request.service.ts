@@ -14,26 +14,26 @@ export class RequestService {
   }
 
   acceptRequest(reqId) {
-    return this.http.put("http://localhost:8086/request/accept/" + reqId, null);
+    return this.http.put("http://localhost:8086/request/accept", { requestId: reqId });
   }
 
   acceptBundle(bundleId) {
-    return this.http.put("http://localhost:8086/request/bundle/accept/" + bundleId, null);
+    return this.http.put("http://localhost:8086/request/bundle/accept", { bundleId: bundleId });
   }
 
   refuseRequest(reqId) {
-    return this.http.put("http://localhost:8086/request/refuse/" + reqId, null);
+    return this.http.put("http://localhost:8086/request/refuse", { requestId: reqId });
   }
 
   refuseBundle(bundleId) {
-    return this.http.put("http://localhost:8086/request/bundle/refuse/" + bundleId, null);
+    return this.http.put("http://localhost:8086/request/bundle/refuse", { bundleId: bundleId });
   }
 
   cancelRequest(reqId) {
-    return this.http.put("http://localhost:8086/request/cancel/" + reqId, null);
+    return this.http.put("http://localhost:8086/request/cancel", { requestId: reqId });
   }
 
   cancelBundle(bundleId) {
-    return this.http.put("http://localhost:8086/request/bundle/cancel/" + bundleId, null);
+    return this.http.put("http://localhost:8086/request/bundle/cancel", { bundleId: bundleId });
   }
 }
