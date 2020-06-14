@@ -5,6 +5,7 @@ import { CarClass } from './carclass';
 import { Fuel } from './fuel';
 import { Gearbox } from './gearbox';
 import { Mark } from './mark';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable()
@@ -12,23 +13,23 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   getModels() {
-    return this.http.get<Model[]>("http://localhost:8086/car/model/all");
+    return this.http.get<Model[]>(environment.api + "/car/model/all");
   }
 
   getMarks() {
-    return this.http.get<Mark[]>("http://localhost:8086/car/mark/all");
+    return this.http.get<Mark[]>(environment.api + "/car/mark/all");
   }
 
   getGearboxes() {
-    return this.http.get<Gearbox[]>("http://localhost:8086/car/gearbox/all");
+    return this.http.get<Gearbox[]>(environment.api + "/car/gearbox/all");
   }
 
   getFuels() {
-    return this.http.get<Fuel[]>("http://localhost:8086/car/fuel/all");
+    return this.http.get<Fuel[]>(environment.api + "/car/fuel/all");
   }
 
   getCarClasses() {
-    return this.http.get<CarClass[]>("http://localhost:8086/car/carclass/all");
+    return this.http.get<CarClass[]>(environment.api + "/car/carclass/all");
   }
 
 }
