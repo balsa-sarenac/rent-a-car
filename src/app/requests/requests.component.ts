@@ -29,4 +29,20 @@ export class RequestsComponent implements OnInit {
       this.requestService.acceptBundle(req.bundleId)
         .subscribe();
   }
+
+  refuse(req: IRequest) {
+    if (req.bundleId == -1)
+      this.requestService.refuseRequest(req.id)
+        .subscribe();
+    else
+      this.requestService.refuseBundle(req.bundleId)
+        .subscribe();
+  }
+
+  cancel(req: IRequest) {
+    if (req.bundleId == -1)
+      this.requestService.cancelRequest(req.id).subscribe();
+    else
+      this.requestService.cancelBundle(req.bundleId).subscribe();
+  }
 }
