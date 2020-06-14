@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IMessage } from './imessage.message';
-import { ConfigService } from '../config/config.service';
-import { Chat } from '../interfaces/chat';
-import { Message } from '../interfaces/message';
+import { Chat } from './shared/chat';
+import { Message } from './shared/message';
 import { FormBuilder } from '@angular/forms';
+import { ChatService } from './shared/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -17,7 +16,7 @@ export class ChatComponent implements OnInit {
   newMessage: Message;
   companionId: Number;
 
-  constructor(private configService: ConfigService, private formBuilder: FormBuilder) {
+  constructor(private chatService: ChatService, private formBuilder: FormBuilder) {
     this.messageForm = this.formBuilder.group({ text: '' });
   }
 
@@ -26,7 +25,7 @@ export class ChatComponent implements OnInit {
   }
 
   getMessages() {
-    this.configService.getMessages(1)
+    this.chatService.getMessages(1)
       .subscribe((data: Chat[]) => this.chats = data);
   }
 
@@ -43,7 +42,7 @@ export class ChatComponent implements OnInit {
       user: 'sent',
       companionId: this.companionId
     };
-    this.configService.sendMessage(this.newMessage)
+    this.chatService.sendMessage(this.newMessage)
       .subscribe((data: Message) => this.messages.push(data));
 
     this.messageForm.reset();

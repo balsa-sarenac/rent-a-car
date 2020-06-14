@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +13,11 @@ import { NewCarComponent } from './car/new-car/new-car.component';
 import { CarComponent } from './car/car.component';
 import { OccupationComponent } from './car/occupation/occupation.component';
 
-import { ConfigService } from './config/config.service';
+import { CarService } from './car/shared/car.service';
+import { RequestService } from './requests/shared/request.service';
+import { AuthService } from './auth/shared/auth.service';
+import { ChatService } from './chat/shared/chat.service';
+import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { ConfigService } from './config/config.service';
     OccupationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
-  providers: [ConfigService],
+  providers: [CarService, RequestService, AuthService, ChatService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

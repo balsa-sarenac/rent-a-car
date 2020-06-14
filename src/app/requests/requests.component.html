@@ -1,24 +1,61 @@
 <div class="col-sm-6">
-  <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Car</th>
-        <th scope="col">Date</th>
-        <th scope="col">Status</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let req of requests">
-        <td>{{ req.car }}</td>
-        <td>{{ req.date }}</td>
-        <td>{{ req.status }}</td>
-        <td>
-          <button *ngIf="req.status == 'PENDING'" class="btn btn-dark">
-            Cancel
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+   <table class="table table-hover">
+      <thead class="thead-dark">
+         <tr>
+            <th scope="col">Ad</th>
+            <th scope="col">Pick up place</th>
+            <th scope="col">Pick up date</th>
+            <th scope="col">Return date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Bundle id</th>
+            <th scope="col">Accept</th>
+            <th scope="col">Refuse</th>
+            <th scope="col">Cancel</th>
+            <th scope="col">Comment & grade</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let req of requests">
+            <td>{{ req.adId }}</td>
+            <td>{{ req.pickUpPlace }}</td>
+            <td>{{ req.pickUpDate }}</td>
+            <td>{{ req.returnDate }}</td>
+            <td>{{ req.status }}</td>
+            <td>{{ req.bundleId == -1 ? "" : req.bundleId }}</td>
+            <td>
+               <button
+                  *ngIf="req.status == 'pending'"
+                  class="btn btn-dark"
+                  (click)="accept(req)"
+               >
+                  Accept
+               </button>
+            </td>
+            <td>
+               <button
+                  *ngIf="req.status == 'pending'"
+                  class="btn btn-dark"
+                  (click)="refuse(req)"
+               >
+                  Refuse
+               </button>
+            </td>
+            <td>
+               <button
+                  *ngIf="req.status == 'pending'"
+                  class="btn btn-dark"
+                  (click)="cancel(req)"
+               >
+                  Cancel
+               </button>
+            </td>
+            <td>
+               <button *ngIf="req.status == 'paid'" class="btn btn-dark">
+                  Comment
+               </button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
 </div>
+"
