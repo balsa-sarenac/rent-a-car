@@ -15,26 +15,26 @@ export class RequestService {
   }
 
   acceptRequest(reqId) {
-    return this.http.put(environment.api + "/request/accept", { requestId: reqId });
+    return this.http.patch(environment.api + "/request/accept", { id: reqId });
   }
 
   acceptBundle(bundleId) {
-    return this.http.put(environment.api + "/request/bundle/accept", { bundleId: bundleId });
+    return this.http.patch(environment.api + "/request/bundle/accept", { id: bundleId });
   }
 
   refuseRequest(reqId) {
-    return this.http.put(environment.api + "/request/refuse", { requestId: reqId });
+    return this.http.patch(environment.api + "/request/refuse", { id: reqId });
   }
 
   refuseBundle(bundleId) {
-    return this.http.put(environment.api + "/request/bundle/refuse", { bundleId: bundleId });
+    return this.http.patch(environment.api + "/request/bundle/refuse", { id: bundleId });
   }
 
   cancelRequest(reqId) {
-    return this.http.put(environment.api + "/request/cancel", { requestId: reqId });
+    return this.http.patch(environment.api + "/request/cancel", { id: reqId });
   }
 
   cancelBundle(bundleId) {
-    return this.http.put(environment.api + "/request/bundle/cancel", { bundleId: bundleId });
+    return this.http.patch(environment.api + "/request/bundle/cancel", { id: bundleId });
   }
 }
