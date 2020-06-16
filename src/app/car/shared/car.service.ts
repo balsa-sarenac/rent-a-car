@@ -6,6 +6,8 @@ import { Fuel } from './fuel';
 import { Gearbox } from './gearbox';
 import { Mark } from './mark';
 import { environment } from 'src/environments/environment';
+import { Ad } from './ad';
+import { Car } from './car';
 
 
 @Injectable()
@@ -30,6 +32,33 @@ export class CarService {
 
   getCarClasses() {
     return this.http.get<CarClass[]>(environment.api + "/car/carclass/all");
+  }
+
+  postNewAd(userData) {
+    console.log(userData);
+    let car: Car = {
+      markId: userData.markId,
+      modelId: userData.modelId,
+      fuelId: userData.fuelId,
+      gearboxId: userData.gearboxId,
+      carClassId: userData.carClassId,
+      images: userData.images,
+      kilometrage: userData.kilometrage,
+      numberOfChildSeats: userData.numberOfChildSeats,
+      userId: -1
+    };
+    console.log(car);
+    let adDTO: Ad = {
+      car: car,
+      cdwAvailable: userData.cdw,
+      allowedKilometrage: userData.allowedKilometrage,
+      fromDate: userData.fromDate,
+      toDate: userData.toDate,
+      pickUpPlace: userData.pickUpPlace,
+      priceListId: userData.priceListId
+    }
+    console.log(adDTO);
+    return this.http.post<Ad>(environment.api, adDTO);
   }
 
 }
