@@ -1,6 +1,4 @@
-import { Mark } from './mark';
-
 export interface Model {
+    id: Number,
     name: String,
-    // mark: Mark
 }

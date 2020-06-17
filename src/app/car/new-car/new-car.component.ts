@@ -16,12 +16,13 @@ import { MyImage } from '../shared/my-image';
 export class NewCarComponent implements OnInit {
   newCarForm;
   models: Model[];
-  marks: Model[];
+  marks: Mark[];
   fuels: Fuel[];
   gearboxes: Gearbox[];
   carClasses: CarClass[];
   imageFiles = [];
   imageURLs: MyImage[] = [];
+  selectedMark: Mark;
 
   constructor(private formBuilder: FormBuilder, private carService: CarService) {
     this.newCarForm = this.formBuilder.group({
@@ -69,6 +70,14 @@ export class NewCarComponent implements OnInit {
       .subscribe((data: CarClass[]) => this.carClasses = data);
 
     // pricelist
+  }
+
+  markChange() {
+    this.marks.forEach(element => {
+      if (element.id == this.newCarForm.value.markId) {
+        this.selectedMark = element
+      }
+    });
   }
 
   fileUpload(event) {

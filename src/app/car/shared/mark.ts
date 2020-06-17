@@ -1,3 +1,7 @@
+import { Model } from './model';
+
 export interface Mark {
-    name: String
+    id: Number,
+    name: String,
+    models: Model[]
 }
