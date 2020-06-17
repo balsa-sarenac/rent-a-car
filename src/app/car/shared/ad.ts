@@ -1,7 +1,7 @@
 import { Car } from './car';
 
 export interface Ad {
-    car: Car,
+    carDTO: Car,
     cdwAvailable: boolean;
     pickUpPlace: String;
     fromDate: Date;

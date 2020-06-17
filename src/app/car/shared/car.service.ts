@@ -49,7 +49,7 @@ export class CarService {
     };
     console.log(car);
     let adDTO: Ad = {
-      car: car,
+      carDTO: car,
       cdwAvailable: userData.cdw,
       allowedKilometrage: userData.allowedKilometrage,
       fromDate: userData.fromDate,
@@ -58,7 +58,7 @@ export class CarService {
       priceListId: userData.priceListId
     }
     console.log(adDTO);
-    return this.http.post<Ad>(environment.api, adDTO);
+    return this.http.post<Ad>(environment.api + "/car/ad", adDTO);
   }
 
 }

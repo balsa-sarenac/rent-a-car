@@ -6,6 +6,7 @@ import { Fuel } from 'src/app/car/shared/fuel';
 import { Gearbox } from 'src/app/car/shared/gearbox';
 import { Mark } from 'src/app/car/shared/mark';
 import { Model } from 'src/app/car/shared/model';
+import { MyImage } from '../shared/my-image';
 
 @Component({
   selector: 'app-new-car',
@@ -19,7 +20,8 @@ export class NewCarComponent implements OnInit {
   fuels: Fuel[];
   gearboxes: Gearbox[];
   carClasses: CarClass[];
-  imageFiles: String[] = [];
+  imageFiles = [];
+  imageURLs: MyImage[] = [];
 
   constructor(private formBuilder: FormBuilder, private carService: CarService) {
     this.newCarForm = this.formBuilder.group({
@@ -36,7 +38,6 @@ export class NewCarComponent implements OnInit {
       allowedKilometrage: 0,
       priceListId: -1,
       cdw: false,
-      images: [],
       isAllowed: false
     });
   }
@@ -47,10 +48,10 @@ export class NewCarComponent implements OnInit {
 
   onSubmit(userData) {
     this.newCarForm.value.images = [];
-    for (var i = 0; i < this.imageFiles.length; i++) {
-      this.newCarForm.value.images.push(this.imageFiles[i]);
-    }
-    // submit
+    // for (var i = 0; i < this.imageFiles.length; i++) {
+    // this.newCarForm.value.images.push(this.imageFiles[i]);
+    // }
+    userData.images = this.imageURLs;
     this.carService.postNewAd(userData).subscribe(() => alert("success!"));
     this.newCarForm.reset();
   }
@@ -72,8 +73,17 @@ export class NewCarComponent implements OnInit {
 
   fileUpload(event) {
     if (event.target.files && event.target.files[0]) {
-      for (var i = 0; i < event.target.files.length; i++) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
         this.imageFiles.push(event.target.files[i]);
+        reader.onload = (event: any) => {
+          console.log(event.target.result)
+          this.imageURLs.push(event.target.result);
+        }
+
+        reader.readAsDataURL(event.target.files[i]);
       }
     }
   }
