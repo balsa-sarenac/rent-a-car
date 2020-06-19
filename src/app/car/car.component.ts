@@ -3,6 +3,7 @@ import { CarService } from './shared/car.service';
 import { CommentService } from '../comment/shared/comment.service';
 import { IComment } from '../comment/shared/comment';
 import { AdInfo } from './shared/adInfo';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-car',
@@ -15,30 +16,39 @@ export class CarComponent implements OnInit {
   commentText: string;
   comment: IComment;
   comments: IComment[];
+  id: number;
+  private sub: any;
 
   constructor(private carService: CarService,
-              private commentService: CommentService) { }
+    private commentService: CommentService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.carService.getOneAd(5).subscribe(
-      data => {this.ad = data;
+    this.sub = this.route.params.subscribe(params => {
+      this.id = +params['id']; // (+) converts string 'id' to a number
+
+      // In a real app: dispatch action to load the details here.
+    });
+    this.carService.getOneAd(this.id).subscribe(
+      data => {
+        this.ad = data;
         this.commentService.getCommentsForCar(this.ad.car.id).subscribe(
-          data => {this.comments = data
+          data => {
+            this.comments = data
           }
         );
       }
     );
-    
-  } 
 
-  sendComment(): void{
+  }
+
+  sendComment(): void {
     this.comment = {
-        adId: this.ad.id,
-        approved: false,
-        text: this.commentText,
-        userUsername: 'agent',
-        id: null,
-        carId: null
+      adId: this.ad.id,
+      approved: false,
+      text: this.commentText,
+      userUsername: 'agent',
+      id: null,
+      carId: null
     };
     this.commentService.createComment(this.comment).subscribe();
     this.commentText = "";
