@@ -34,6 +34,11 @@ export class CarService {
     return this.http.get<CarClass[]>(environment.api + "/car/carclass/all");
   }
 
+  getOneAd(id: number) {
+    //return this.http.get<any>(environment.api +"/car/ad/"+ id);
+    return this.http.get<any>("http://localhost:8083/ad/"+ id);
+  }
+
   postNewAd(userData) {
     console.log(userData);
     let car: Car = {
