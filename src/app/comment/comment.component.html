@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-center">
+    <div class="d-flex flex-column col-sm-7">
+       <h1 class="display-4" style="text-align: center;">Comments</h1>
+       <div *ngFor = "let comment of comments" class="card">
+          <div class="card-body" >
+             <h5 class="card-title">User: {{comment.userUsername}}</h5>
+             <p class="card-text">{{comment.text}}</p>
+             <button class="btn btn-secondary" style="float: right;" (click) = "onClickRefuse(comment)">Refuse</button>
+             <button class="btn btn-primary" style="margin-right: 10px; float: right;" (click) = "onClickAccepte(comment)">Accept</button>
+          </div>
+       </div>
+       <br>
+ </div>
+ 
