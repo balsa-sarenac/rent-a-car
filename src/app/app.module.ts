@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { RequestService } from './requests/shared/request.service';
 import { AuthService } from './auth/shared/auth.service';
 import { ChatService } from './chat/shared/chat.service';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,9 @@ import { AuthInterceptor } from './http-interceptors/auth-interceptor';
     NewCarComponent,
     CarComponent,
     OccupationComponent,
+    CommentComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
+  imports: [NgbModule,BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [CarService, RequestService, AuthService, ChatService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent],
