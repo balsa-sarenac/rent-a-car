@@ -1,9 +1,9 @@
 export interface IRequest {
-    id: Number,
-    pickUpPlace: String,
+    id: number,
+    pickUpPlace: string,
     pickUpDate: Date,
     returnDate: Date,
-    status: String,
-    adId: Number,
-    bundleId: Number
+    status: string,
+    adId: number,
+    bundleId: number
 }

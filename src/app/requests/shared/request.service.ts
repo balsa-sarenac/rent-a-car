@@ -11,6 +11,7 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
   getRequests() {
+    //return this.http.get<IRequest[]>("http://localhost:8084/1");
     return this.http.get<IRequest[]>(environment.api + "/request/1");
   }
 

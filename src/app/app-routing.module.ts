@@ -7,6 +7,7 @@ import { ChatComponent } from './chat/chat.component';
 import { RequestsComponent } from "./requests/requests.component";
 import { NewCarComponent } from "./car/new-car/new-car.component";
 import { CarComponent } from "./car/car.component";
+import { CommentComponent } from './comment/comment.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'requests', component: RequestsComponent },
   { path: 'car', component: CarComponent },
   { path: 'new-car', component: NewCarComponent },
+  { path: 'comments', component: CommentComponent },
 ];
 
 @NgModule({
