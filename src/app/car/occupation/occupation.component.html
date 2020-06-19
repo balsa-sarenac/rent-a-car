@@ -1,1 +1,48 @@
-<p>occupation works!</p>
+<div class="d-flex justify-content-center">
+    <div class="d-flex flex-column col-sm-3 " style="background-color:lightgray; margin: 5px; height:100%">
+        <form
+            [formGroup]="newOccupationForm"
+            class="needs-validation col-sm-8"
+            (ngSubmit)="onSubmit(newOccupationForm.value)"
+        >
+        <h1 class="display-4" style="text-align: center;">Set occupation</h1>
+        <div class="form-group col-sm-6 ">
+            <label for="mark">Car </label>
+            <select
+                class="form-control"
+                formControlName="carId"
+                style="width: 310px;"
+                id="car">
+                <option
+                  *ngFor="let car of cars"
+                  [value]="car.id"
+                  >{{ car.mark.name }} {{car.model.name}}</option
+               >
+            </select>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="toDate">From date</label>
+            <input
+               type="date"
+               formControlName="dateFrom"
+               id="dateFrom"
+               class="form-control"
+               style="width: 310px;"
+            />
+         </div> 
+         <div class="form-group col-sm-6" >
+            <label for="toDate">To date</label>
+            <input
+               type="date"
+               formControlName="dateTo"
+               id="dateTo"
+               class="form-control"
+               style="width: 310px;"
+            />
+         </div>
+         <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
+            Submit
+         </button>
+        </form>
+    </div>
+</div>
