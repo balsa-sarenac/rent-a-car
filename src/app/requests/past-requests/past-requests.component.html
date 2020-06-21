@@ -2,29 +2,35 @@
    <table class="table table-hover">
       <thead class="thead-dark">
          <tr>
-            <th scope="col">Ad</th>
-            <th scope="col">Pick up place</th>
-            <th scope="col">Pick up date</th>
-            <th scope="col">Return date</th>
-            <th scope="col">Status</th>
-            <th scope="col">Bundle id</th>
+            <div>
+               <th scope="col">Ad</th>
+               <th scope="col">Pick up place</th>
+               <th scope="col">Pick up date</th>
+               <th scope="col">Return date</th>
+               <th scope="col">Status</th>
+               <th scope="col">Bundle id</th>
+            </div>
+
             <th scope="col">Report</th>
             <th scope="col">Comment & grade</th>
          </tr>
       </thead>
       <tbody>
-         <tr *ngFor="let req of requests" (click)="openAd(req)">
-            <td>{{ req.adId }}</td>
-            <td>{{ req.pickUpPlace }}</td>
-            <td>{{ req.pickUpDate }}</td>
-            <td>{{ req.returnDate }}</td>
-            <td>{{ req.status }}</td>
-            <td>{{ req.bundleId == -1 ? "" : req.bundleId }}</td>
+         <tr *ngFor="let req of requests">
+            <div (click)="openAd(req)">
+               <td>{{ req.adId }}</td>
+               <td>{{ req.pickUpPlace }}</td>
+               <td>{{ req.pickUpDate }}</td>
+               <td>{{ req.returnDate }}</td>
+               <td>{{ req.status }}</td>
+               <td>{{ req.bundleId == -1 ? "" : req.bundleId }}</td>
+            </div>
+
             <td>
                <button
                   *ngIf="req.status == 'paid'"
                   class="btn btn-dark"
-                  (click)="report(req)"
+                  (click)="openReport(mymodal_report, req)"
                >
                   Report
                </button>
@@ -69,6 +75,41 @@
       </div>
       <div class="modal-footer">
          <button type="button" class="btn btn-outline-dark" (click)="send()">
+            Send
+         </button>
+      </div>
+   </ng-template>
+   <ng-template #mymodal_report let-modal>
+      <div class="modal-header">
+         <h4 class="modal-title" id="modal-basic-title">Report</h4>
+         <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+         >
+            <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div class="modal-body">
+         <label> Comment </label><br />
+         <textarea
+            type="text"
+            class="form-control"
+            id="firstName"
+            placeholder="Comment"
+            value=""
+            [(ngModel)]="textCommentReport"
+         ></textarea
+         ><br />
+         <label> Enter new kilometers </label><br />
+         <input
+            type="number"
+            [(ngModel)]="kilometrage"
+         />
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-outline-dark" (click)="sendReport()">
             Send
          </button>
       </div>

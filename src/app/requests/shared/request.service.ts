@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IRequest } from './irequest.request';
 import { environment } from 'src/environments/environment';
+import { IReport } from './ireport.report';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,9 @@ export class RequestService {
 
   cancelBundle(bundleId) {
     return this.http.patch(environment.api + "/request/bundle/cancel", { id: bundleId });
+  }
+
+  createReport(report: IReport) {
+    return this.http.post<any>(environment.api + "/car/report", report);
   }
 }

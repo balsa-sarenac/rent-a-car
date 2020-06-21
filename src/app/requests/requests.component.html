@@ -2,12 +2,15 @@
    <table class="table table-hover">
       <thead class="thead-dark">
          <tr>
-            <th scope="col">Ad</th>
-            <th scope="col">Pick up place</th>
-            <th scope="col">Pick up date</th>
-            <th scope="col">Return date</th>
-            <th scope="col">Status</th>
-            <th scope="col">Bundle id</th>
+            <div>
+               <th scope="col">Ad</th>
+               <th scope="col">Pick up place</th>
+               <th scope="col">Pick up date</th>
+               <th scope="col">Return date</th>
+               <th scope="col">Status</th>
+               <th scope="col">Bundle id</th>
+            </div>
+
             <th scope="col">Accept</th>
             <th scope="col">Refuse</th>
             <th scope="col">Cancel</th>
@@ -15,12 +18,15 @@
       </thead>
       <tbody>
          <tr *ngFor="let req of requests">
-            <td>{{ req.adId }}</td>
-            <td>{{ req.pickUpPlace }}</td>
-            <td>{{ req.pickUpDate }}</td>
-            <td>{{ req.returnDate }}</td>
-            <td>{{ req.status }}</td>
-            <td>{{ req.bundleId == -1 ? "" : req.bundleId }}</td>
+            <div (click)="openAd(req)">
+               <td>{{ req.adId }}</td>
+               <td>{{ req.pickUpPlace }}</td>
+               <td>{{ req.pickUpDate }}</td>
+               <td>{{ req.returnDate }}</td>
+               <td>{{ req.status }}</td>
+               <td>{{ req.bundleId == -1 ? "" : req.bundleId }}</td>
+            </div>
+
             <td>
                <button
                   *ngIf="req.status == 'pending'"
