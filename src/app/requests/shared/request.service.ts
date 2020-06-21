@@ -15,6 +15,14 @@ export class RequestService {
     return this.http.get<IRequest[]>(environment.api + "/request/1");
   }
 
+  getActive() {
+    return this.http.get<IRequest[]>(environment.api + "/request/active/1")
+  }
+
+  getPast() {
+    return this.http.get<IRequest[]>(environment.api + "/request/past/1")
+  }
+
   acceptRequest(reqId) {
     return this.http.patch(environment.api + "/request/accept", { id: reqId });
   }
