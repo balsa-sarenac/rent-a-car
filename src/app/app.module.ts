@@ -21,6 +21,7 @@ import { ChatService } from './chat/shared/chat.service';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { CommentComponent } from './comment/comment.component';
 import { PastRequestsComponent } from './requests/past-requests/past-requests.component';
+import { StatisticsComponent } from './car/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PastRequestsComponent } from './requests/past-requests/past-requests.co
     OccupationComponent,
     CommentComponent,
     PastRequestsComponent,
+    StatisticsComponent,
   ],
   imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [CarService, RequestService, AuthService, ChatService,

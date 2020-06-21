@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center">
+   <div class="d-flex flex-column col-sm-7">
+      <div class="card-body">
+         <h5 class="card-title">Najbolje ocenjeni automobil</h5>
+         <p>{{ statistics.carWithHighestGrade.markName }}</p>
+         <p>{{ statistics.carWithHighestGrade.modelName }}</p>
+         <p>
+            prosečna ocena: {{ statistics.carWithHighestGrade.averageGrade }}
+         </p>
+      </div>
+      <div class="card-body">
+         <h5 class="card-title">Automobil sa najviše komentara</h5>
+         <p>{{ statistics.carWithMostComments.markName }}</p>
+         <p>{{ statistics.carWithMostComments.modelName }}</p>
+         <p>
+            Broj komentara:
+            {{ statistics.carWithMostComments.numberOfComments }}
+         </p>
+      </div>
+      <div class="card-body">
+         <h5 class="card-title">Automobil sa najviše pređenih kilometara</h5>
+         <p>{{ statistics.carWithMostKilometers.markName }}</p>
+         <p>{{ statistics.carWithMostKilometers.modelName }}</p>
+         <p>
+            Pređeni kilometri:
+            {{ statistics.carWithMostKilometers.kilometrage }}
+         </p>
+      </div>
+   </div>
+</div>

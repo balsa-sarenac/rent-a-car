@@ -21,7 +21,7 @@ export class PastRequestsComponent implements OnInit {
   request: IRequest;
   report: IReport;
   textComment: string;
-  textCommentReport : string;
+  textCommentReport: string;
   currentRate: number = 0;
   myModal: NgbModalRef;
   myModalReport: NgbModalRef;
@@ -93,7 +93,7 @@ export class PastRequestsComponent implements OnInit {
       id: null,
       kilometrage: this.kilometrage,
       comment: this.textCommentReport,
-      car_id: this.request.adId
+      ad_id: this.request.adId
     };
     this.requestService.createReport(newReport).subscribe(data => {
       this.report = data;
