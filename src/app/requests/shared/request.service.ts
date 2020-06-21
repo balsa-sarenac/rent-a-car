@@ -49,6 +49,6 @@ export class RequestService {
   }
 
   createReport(report: IReport) {
-    return this.http.post<any>(environment.api + "/car/report", report);
+    return this.http.post<any>(environment.api + "/report", report);
   }
 }

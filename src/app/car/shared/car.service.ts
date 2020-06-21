@@ -35,10 +35,10 @@ export class CarService {
   }
 
   getCarsByUser() {
-    return this.http.get<any>(environment.api +"/car/car/user");
+    return this.http.get<any>(environment.api + "/car/user");
     //return this.http.get<any>("http://localhost:8083/car/user");
   }
-  
+
   getOneAd(id: number) {
     return this.http.get<any>(environment.api + "/car/ad/" + id);
     // return this.http.get<any>("http://localhost:8083/ad/" + id);
@@ -68,11 +68,11 @@ export class CarService {
       priceListId: userData.priceListId
     }
     console.log(adDTO);
-    return this.http.post<Ad>(environment.api + "/car/ad", adDTO);
+    return this.http.post<Ad>(environment.api + "/ad", adDTO);
   }
 
   getStatistics() {
-    return this.http.get<any>(environment.api + "/car/car/statistics/1");
+    return this.http.get<any>(environment.api + "/car/statistics/1");
   }
 
 }

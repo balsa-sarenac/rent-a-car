@@ -11,6 +11,6 @@ export class OccupationService {
 
   setOccupied(occupied: any) {
     //return this.http.post<any>(environment.api + "/car/occupied", occupied);
-    return this.http.post<any>("http://localhost:8083/occupied", occupied);
+    return this.http.post<any>("http://localhost:8080/occupied", occupied);
   }
 }

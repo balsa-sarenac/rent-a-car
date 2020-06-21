@@ -13,12 +13,12 @@ export class ChatService {
 
 
   sendMessage(message: Message) {
-    return this.http.post<Message>(environment.api + "/admin/message", message);
+    return this.http.post<Message>(environment.api + "/message", message);
   }
 
 
   getMessages(userId: Number) {
-    return this.http.get<Chat[]>(environment.api + "/admin/message/" + userId);
+    return this.http.get<Chat[]>(environment.api + "/message/" + userId);
   }
 
 }
