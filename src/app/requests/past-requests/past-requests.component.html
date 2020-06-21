@@ -31,7 +31,7 @@
                <button
                   *ngIf="req.status == 'paid'"
                   class="btn btn-dark"
-                  (click)="report(req)"
+                  (click)="openReport(mymodal_report, req)"
                >
                   Report
                </button>
@@ -146,4 +146,40 @@
          </div>
       </div>
    </div>
+   <ng-template #mymodal_report let-modal>
+      <div class="modal-header">
+         <h4 class="modal-title" id="modal-basic-title">Report</h4>
+         <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+         >
+            <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div class="modal-body">
+         <label> Comment </label><br />
+         <textarea
+            type="text"
+            class="form-control"
+            id="firstName"
+            placeholder="Comment"
+            value=""
+            [(ngModel)]="textCommentReport"
+         ></textarea
+         ><br />
+         <label> Enter new kilometers </label><br />
+         <input type="number" [(ngModel)]="kilometrage" />
+      </div>
+      <div class="modal-footer">
+         <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="sendReport()"
+         >
+            Send
+         </button>
+      </div>
+   </ng-template>
 </div>
