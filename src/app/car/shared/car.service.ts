@@ -35,8 +35,8 @@ export class CarService {
   }
 
   getOneAd(id: number) {
-    //return this.http.get<any>(environment.api +"/car/ad/"+ id);
-    return this.http.get<any>("http://localhost:8083/ad/"+ id);
+    return this.http.get<any>(environment.api + "/car/ad/" + id);
+    // return this.http.get<any>("http://localhost:8083/ad/" + id);
   }
 
   postNewAd(userData) {

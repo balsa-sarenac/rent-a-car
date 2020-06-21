@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IRequest } from './shared/irequest.request';
 import { RequestService } from './shared/request.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-requests',
@@ -15,7 +16,7 @@ export class RequestsComponent implements OnInit {
   currentRate: number = 0;
   myModal: NgbModalRef;
 
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService, private router: Router) { }
 
   ngOnInit(): void {
     this.getRequests();
@@ -49,5 +50,9 @@ export class RequestsComponent implements OnInit {
       this.requestService.cancelRequest(req.id).subscribe();
     else
       this.requestService.cancelBundle(req.bundleId).subscribe();
+  }
+
+  openAd(req: IRequest) {
+    this.router.navigate(['/car', req.adId]);
   }
 }
