@@ -5,5 +5,6 @@ export interface IRequest {
     returnDate: Date,
     status: string,
     adId: number,
-    bundleId: number
+    bundleId: number,
+    userId: number
 }

@@ -6,6 +6,9 @@ import { CommentService } from 'src/app/comment/shared/comment.service';
 import { GradeService } from 'src/app/comment/shared/grade.service';
 import { IComment } from 'src/app/comment/shared/comment';
 import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { Message } from 'src/app/chat/shared/message';
+import { ChatService } from 'src/app/chat/shared/chat.service';
 import { IReport } from '../shared/ireport.report';
 
 @Component({
@@ -23,12 +26,18 @@ export class PastRequestsComponent implements OnInit {
   myModal: NgbModalRef;
   myModalReport: NgbModalRef;
   user: string;
+  messageForm;
+  newMessage: Message;
+  companionId: number;
   kilometrage: number;
 
   constructor(private requestService: RequestService,
     private modalService: NgbModal,
     private commentService: CommentService,
-    private gradeService: GradeService, private router: Router) { }
+    private gradeService: GradeService,
+    private chatService: ChatService,
+    private formBuilder: FormBuilder,
+    private router: Router) { this.messageForm = this.formBuilder.group({ text: '' }); }
 
   ngOnInit(): void {
     this.getPast();
@@ -95,6 +104,12 @@ export class PastRequestsComponent implements OnInit {
     this.myModalReport.close();
   }
 
+  /*
+  report(req: IRequest) {
+    console.log("report");
+  }
+  */
+
   getPast() {
     this.requestService.getPast()
       .subscribe((data: IRequest[]) => this.requests = data);
@@ -103,4 +118,26 @@ export class PastRequestsComponent implements OnInit {
   openAd(req: IRequest) {
     this.router.navigate(['/car', req.adId]);
   }
+
+  onSubmit(mess: { text: String; }) {
+    this.newMessage = {
+      id: -1,
+      text: mess.text,
+      sent: new Date(),
+      user: 'sent',
+      companionId: this.companionId,
+    };
+    this.chatService.sendMessage(this.newMessage)
+      .subscribe(() => {
+        console.log("Message sent");
+      }
+      );
+
+    this.messageForm.reset();
+  }
+
+  setCompanion(req: IRequest) {
+    this.companionId = req.userId;
+  }
+
 }
