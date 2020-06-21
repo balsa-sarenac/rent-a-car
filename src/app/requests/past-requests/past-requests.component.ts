@@ -6,6 +6,9 @@ import { CommentService } from 'src/app/comment/shared/comment.service';
 import { GradeService } from 'src/app/comment/shared/grade.service';
 import { IComment } from 'src/app/comment/shared/comment';
 import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { Message } from 'src/app/chat/shared/message';
+import { ChatService } from 'src/app/chat/shared/chat.service';
 
 @Component({
   selector: 'app-past-requests',
@@ -19,11 +22,17 @@ export class PastRequestsComponent implements OnInit {
   currentRate: number = 0;
   myModal: NgbModalRef;
   user: string;
+  messageForm;
+  newMessage: Message;
+  companionId: number;
 
   constructor(private requestService: RequestService,
     private modalService: NgbModal,
     private commentService: CommentService,
-    private gradeService: GradeService, private router: Router) { }
+    private gradeService: GradeService,
+    private chatService: ChatService,
+    private formBuilder: FormBuilder,
+    private router: Router) { this.messageForm = this.formBuilder.group({ text: '' }); }
 
   ngOnInit(): void {
     this.getPast();
@@ -75,4 +84,26 @@ export class PastRequestsComponent implements OnInit {
   openAd(req: IRequest) {
     this.router.navigate(['/car', req.adId]);
   }
+
+  onSubmit(mess: { text: String; }) {
+    this.newMessage = {
+      id: -1,
+      text: mess.text,
+      sent: new Date(),
+      user: 'sent',
+      companionId: this.companionId,
+    };
+    this.chatService.sendMessage(this.newMessage)
+      .subscribe(() => {
+        console.log("Message sent");
+      }
+      );
+
+    this.messageForm.reset();
+  }
+
+  setCompanion(req: IRequest) {
+    this.companionId = req.userId;
+  }
+
 }

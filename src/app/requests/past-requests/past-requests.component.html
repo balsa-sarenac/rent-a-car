@@ -13,6 +13,7 @@
 
             <th scope="col">Report</th>
             <th scope="col">Comment & grade</th>
+            <th scope="col">Chat</th>
          </tr>
       </thead>
       <tbody>
@@ -42,6 +43,18 @@
                   class="btn btn-dark"
                >
                   Comment
+               </button>
+            </td>
+            <td>
+               <button
+                  type="button"
+                  *ngIf="req.status == 'paid'"
+                  class="btn btn-dark"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                  (click)="setCompanion(req)"
+               >
+                  Chat
                </button>
             </td>
          </tr>
@@ -79,4 +92,58 @@
          </button>
       </div>
    </ng-template>
+   <!-- Modal -->
+   <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+   >
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+               <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+               >
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <form
+               [formGroup]="messageForm"
+               (ngSubmit)="onSubmit(messageForm.value)"
+            >
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label for="message-text" class="col-form-label"
+                        >Message:</label
+                     >
+                     <textarea
+                        class="form-control"
+                        id="message-text"
+                        formControlName="text"
+                     ></textarea>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-dismiss="modal"
+                  >
+                     Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                     Send message
+                  </button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
 </div>
