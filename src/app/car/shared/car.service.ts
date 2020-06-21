@@ -66,4 +66,8 @@ export class CarService {
     return this.http.post<Ad>(environment.api + "/car/ad", adDTO);
   }
 
+  getStatistics() {
+    return this.http.get<any>(environment.api + "/car/car/statistics/1");
+  }
+
 }

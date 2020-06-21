@@ -10,6 +10,7 @@ import { NewCarComponent } from "./car/new-car/new-car.component";
 import { CarComponent } from "./car/car.component";
 import { CommentComponent } from './comment/comment.component';
 import { PastRequestsComponent } from './requests/past-requests/past-requests.component';
+import { StatisticsComponent } from './car/statistics/statistics.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'car/:id', component: CarComponent },
   { path: 'new-car', component: NewCarComponent },
   { path: 'comments', component: CommentComponent },
+  { path: 'statistics', component: StatisticsComponent },
 ];
 
 @NgModule({

@@ -6,6 +6,7 @@ import { CommentService } from 'src/app/comment/shared/comment.service';
 import { GradeService } from 'src/app/comment/shared/grade.service';
 import { IComment } from 'src/app/comment/shared/comment';
 import { Router } from '@angular/router';
+import { IReport } from '../shared/ireport.report';
 
 @Component({
   selector: 'app-past-requests',
@@ -15,10 +16,14 @@ import { Router } from '@angular/router';
 export class PastRequestsComponent implements OnInit {
   requests: IRequest[];
   request: IRequest;
+  report: IReport;
   textComment: string;
+  textCommentReport: string;
   currentRate: number = 0;
   myModal: NgbModalRef;
+  myModalReport: NgbModalRef;
   user: string;
+  kilometrage: number;
 
   constructor(private requestService: RequestService,
     private modalService: NgbModal,
@@ -32,6 +37,11 @@ export class PastRequestsComponent implements OnInit {
 
   open(content, req) {
     this.myModal = this.modalService.open(content);
+    this.request = req;
+  }
+
+  openReport(content, req) {
+    this.myModalReport = this.modalService.open(content);
     this.request = req;
   }
 
@@ -63,8 +73,26 @@ export class PastRequestsComponent implements OnInit {
     this.myModal.close();
   }
 
-  report(req: IRequest) {
-    console.log("report");
+  sendReport() {
+    if (this.textCommentReport == undefined || this.textCommentReport == "" ||
+        this.kilometrage == undefined || this.kilometrage == null || this.kilometrage == 0) {
+      alert("Enter info properly!");
+      return;
+    }
+
+    let newReport: IReport = {
+      id: null,
+      kilometrage: this.kilometrage,
+      comment: this.textCommentReport,
+      ad_id: this.request.adId
+    };
+    this.requestService.createReport(newReport).subscribe(data => {
+      this.report = data;
+    }, err => {
+      alert("Error");
+    });
+
+    this.myModalReport.close();
   }
 
   getPast() {
