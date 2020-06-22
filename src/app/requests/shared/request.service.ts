@@ -29,7 +29,7 @@ export class RequestService {
   }
 
   acceptBundle(bundleId) {
-    return this.http.patch(environment.api + "/request/bundle/accept", { id: bundleId });
+    return this.http.patch(environment.api + "/bundle/accept", { id: bundleId });
   }
 
   refuseRequest(reqId) {
@@ -37,7 +37,7 @@ export class RequestService {
   }
 
   refuseBundle(bundleId) {
-    return this.http.patch(environment.api + "/request/bundle/refuse", { id: bundleId });
+    return this.http.patch(environment.api + "/bundle/refuse", { id: bundleId });
   }
 
   cancelRequest(reqId) {
@@ -45,7 +45,7 @@ export class RequestService {
   }
 
   cancelBundle(bundleId) {
-    return this.http.patch(environment.api + "/request/bundle/cancel", { id: bundleId });
+    return this.http.patch(environment.api + "/bundle/cancel", { id: bundleId });
   }
 
   createReport(report: IReport) {

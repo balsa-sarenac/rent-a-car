@@ -15,23 +15,23 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   getModels() {
-    return this.http.get<Model[]>(environment.api + "/car/model/all");
+    return this.http.get<Model[]>(environment.api + "/model/all");
   }
 
   getMarks() {
-    return this.http.get<Mark[]>(environment.api + "/car/mark/all");
+    return this.http.get<Mark[]>(environment.api + "/mark/all");
   }
 
   getGearboxes() {
-    return this.http.get<Gearbox[]>(environment.api + "/car/gearbox/all");
+    return this.http.get<Gearbox[]>(environment.api + "/gearbox/all");
   }
 
   getFuels() {
-    return this.http.get<Fuel[]>(environment.api + "/car/fuel/all");
+    return this.http.get<Fuel[]>(environment.api + "/fuel/all");
   }
 
   getCarClasses() {
-    return this.http.get<CarClass[]>(environment.api + "/car/carclass/all");
+    return this.http.get<CarClass[]>(environment.api + "/carclass/all");
   }
 
   getCarsByUser() {

@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
    <div class="d-flex flex-column col-sm-7">
-      <div class="card-body">
+      <div class="card-body" *ngIf="statistics.carWithHighestGrade != null">
          <h5 class="card-title">Najbolje ocenjeni automobil</h5>
          <p>{{ statistics.carWithHighestGrade.markName }}</p>
          <p>{{ statistics.carWithHighestGrade.modelName }}</p>
@@ -8,7 +8,7 @@
             prosečna ocena: {{ statistics.carWithHighestGrade.averageGrade }}
          </p>
       </div>
-      <div class="card-body">
+      <div class="card-body" *ngIf="statistics.carWithMostComments != null">
          <h5 class="card-title">Automobil sa najviše komentara</h5>
          <p>{{ statistics.carWithMostComments.markName }}</p>
          <p>{{ statistics.carWithMostComments.modelName }}</p>
@@ -17,7 +17,7 @@
             {{ statistics.carWithMostComments.numberOfComments }}
          </p>
       </div>
-      <div class="card-body">
+      <div class="card-body" *ngIf="statistics.carWithMostKilometers != null">
          <h5 class="card-title">Automobil sa najviše pređenih kilometara</h5>
          <p>{{ statistics.carWithMostKilometers.markName }}</p>
          <p>{{ statistics.carWithMostKilometers.modelName }}</p>

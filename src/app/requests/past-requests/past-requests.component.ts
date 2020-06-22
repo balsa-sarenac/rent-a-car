@@ -84,7 +84,7 @@ export class PastRequestsComponent implements OnInit {
 
   sendReport() {
     if (this.textCommentReport == undefined || this.textCommentReport == "" ||
-        this.kilometrage == undefined || this.kilometrage == null || this.kilometrage == 0) {
+      this.kilometrage == undefined || this.kilometrage == null || this.kilometrage == 0) {
       alert("Enter info properly!");
       return;
     }
