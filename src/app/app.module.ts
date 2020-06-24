@@ -22,6 +22,9 @@ import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { CommentComponent } from './comment/comment.component';
 import { PastRequestsComponent } from './requests/past-requests/past-requests.component';
 import { StatisticsComponent } from './car/statistics/statistics.component';
+import { HomepageAdminComponent } from './homepage/homepage-admin/homepage-admin.component';
+import { HomepageUsersComponent } from './homepage/homepage-users/homepage-users.component';
+import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/homepage-unregistred.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { StatisticsComponent } from './car/statistics/statistics.component';
     CommentComponent,
     PastRequestsComponent,
     StatisticsComponent,
+    HomepageAdminComponent,
+    HomepageUsersComponent,
+    HomepageUnregistredComponent,
   ],
   imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [CarService, RequestService, AuthService, ChatService,
