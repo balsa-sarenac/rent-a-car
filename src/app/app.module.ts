@@ -25,6 +25,7 @@ import { StatisticsComponent } from './car/statistics/statistics.component';
 import { HomepageAdminComponent } from './homepage/homepage-admin/homepage-admin.component';
 import { HomepageUsersComponent } from './homepage/homepage-users/homepage-users.component';
 import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/homepage-unregistred.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/ho
     HomepageAdminComponent,
     HomepageUsersComponent,
     HomepageUnregistredComponent,
+    SearchComponent,
   ],
   imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [CarService, RequestService, AuthService, ChatService,

@@ -15,15 +15,17 @@ import { StatisticsComponent } from './car/statistics/statistics.component';
 import { HomepageUsersComponent } from './homepage/homepage-users/homepage-users.component';
 import { HomepageAdminComponent } from './homepage/homepage-admin/homepage-admin.component';
 import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/homepage-unregistred.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'unregistredHomepage', pathMatch: 'full' },
   { path: 'unregistredHomepage', component: HomepageUnregistredComponent,
     children:[
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: '', redirectTo: 'search', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'search', component: SearchComponent}
     ]
   },
   { path: 'usersHomepage', component: HomepageUsersComponent,
