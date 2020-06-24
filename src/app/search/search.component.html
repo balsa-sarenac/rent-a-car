@@ -1,0 +1,135 @@
+<div class="d-flex justify-content-center">
+    <div class="d-flex flex-column col-sm-8">
+        <div>
+            <h3 class="display-4" style="text-align: center;">Search the vehicles</h3>
+        </div>
+        <div class="d-flex flex-row" id="basicSearch">
+            <div class="d-flex flex-column" id="sp">
+                <label id = "label" for="pickUpPlace">Pick up place</label>
+                <input
+                type="text"
+                name="PickUpPlace"
+                id="pickUpPlace"
+                class="form-control"
+                />
+            </div>
+            <div class="d-flex flex-column" id="sp">
+                <label id = "label" for="pickUpPlace">From </label>
+                <input
+                type="date"
+                name="From"
+                id="from"
+                class="form-control"
+                />
+            </div>
+            <div class="d-flex flex-column" id="sp">
+                <label id = "label" for="to">To</label>
+                <input
+                type="date"
+                name="to"
+                id="to"
+                class="form-control"
+                />
+            </div>
+            <div class="d-flex flex-column">
+                <button class="btn btn-outline-success" id="btnSearch">Search</button>
+            </div> 
+            <div class="d-flex flex-column">
+                <button class="btn btn-outline-danger" id="btnSearch">Clear</button>
+            </div> 
+        </div>
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column" id="ss">
+                <h4>Additional search</h4>
+                <div class="form-group">
+                    <label id = "label" for="mark">Mark</label>
+                    <select class="form-control" id="mark">
+                       <option>Marka</option>
+                    </select>
+                 </div>
+                 <div class="form-group">
+                    <label id = "label" for="model">Model</label>
+                    <select class="form-control" id="model">
+                       <option>Model</option>
+                    </select>
+                 </div>
+                 <div class="form-group">
+                    <label id = "label" for="fuel">Fuel</label>
+                    <select class="form-control" id="fuel">
+                       <option>Fuel</option>
+                    </select>
+                 </div>
+                 <div class="form-group">
+                    <label id = "label" for="gearbox">Gearbox</label>
+                    <select class="form-control" id="gearbox">
+                       <option>Gearbox</option>
+                    </select>
+                 </div>
+                 <div class="form-group">
+                    <label id = "label" for="carClass">Class</label>
+                    <select class="form-control" id="carClass">
+                       <option>Class</option>
+                    </select>
+                 </div>
+                 <div class="d-flex flex-row">
+                    <div class="form-group flex-column" style="margin-right: 5px;">
+                        <label id = "label" for="priceFrom">Price from</label>
+                        <input type="number" min="0" name="priceFrom" id="priceFrom" class="form-control"/>
+                     </div> 
+                     <div class="form-group flex-column">
+                        <label id = "label" for="prceTo">Price to</label>
+                        <input type="number" min="0" name="priceTo" id="priceTo" class="form-control"/>
+                     </div> 
+                 </div>
+                 <div class="d-flex flex-row">
+                    <div class="form-group flex-column" style="margin-right: 5px;">
+                        <label id = "label" for="kiloemtrageFrom">Kilometrage from</label>
+                        <input type="number" min="0" name="kiloemtrageFrom" id="kiloemtrageFrom" class="form-control"/>
+                     </div> 
+                     <div class="form-group flex-column">
+                        <label id = "label" for="kilometrageTo">Kilometrage to</label>
+                        <input type="number" min="0" name="kilometrageTo" id="kilometrageTo" class="form-control"/>
+                     </div> 
+                 </div>
+                 <div class="form-group">
+                    <label id = "label" for="kilometrageToPass">Kilometrage to pass</label>
+                    <input type="number" min="0" name="kilometrageToPass" id="kilometrageToPass" class="form-control"/>
+                 </div>
+                 <div class="d-flex flex-row">
+                    <div class="form-group flex-column" style="margin-right: 5px;">
+                        <label id = "label" for="childSeats">Child seats</label>
+                        <input type="number" min="0" name="childSeats" id="childSeats" class="form-control"/>
+                     </div> 
+                     <div class="form-group flex-column">
+                        <label id = "label" for="cdw">CDW</label>
+                        <input type="checkbox" name="cdw" id="cdw" class="form-control"/>
+                     </div> 
+                 </div>
+                 <div>
+                    <button class="btn btn-outline-success" id="btnSearchSecondary">Search</button>
+                 </div>
+                 <div>
+                    <button class="btn btn-outline-danger" id="btnSearchSecondary">Clear</button>
+                 </div>
+            </div>
+            <div class="d-flex flex-column" id = "results">
+                <div class="d-flex flex-row">
+                    <div class="form-group">
+                        <select class="form-control" id="sort">
+                           <option>Sort by</option>
+                           <option>Price higher</option>
+                           <option>Price lower</option>
+                           <option>Grade higher</option>
+                           <option>Grade lower</option>
+                           <option>Kilometrage higher</option>
+                           <option>Kilometrage lower</option>
+                        </select>
+                     </div>
+                </div>
+                <div >
+                        oglasi ovdhe
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
