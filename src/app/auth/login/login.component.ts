@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService, 
-    private router: Router) {
+    private router: Router,
+    private toastr: ToastrService) {
       this.loginForm = this.formBuilder.group({
       username: '',
       password: '',
@@ -37,7 +40,10 @@ export class LoginComponent implements OnInit {
         }else if(data.role != ''){
           this.router.navigate(['usersHomepage']);
         }
-        
+        this.toastr.success('Successfully logged in', 'Login');
+      },
+      error =>{
+        this.toastr.info('Bad credentials', 'Login');
       }
     );
     this.loginForm.reset();

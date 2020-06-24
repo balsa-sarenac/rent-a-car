@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-homepage-admin',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class HomepageAdminComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +22,7 @@ export class HomepageAdminComponent implements OnInit {
     localStorage.removeItem("User-role");
     localStorage.removeItem("Refresh-token");
     this.router.navigate(['unregistredHomepage']);
+    this.toastr.success('Successfully logged out', 'Logout');
   }
 
 }
