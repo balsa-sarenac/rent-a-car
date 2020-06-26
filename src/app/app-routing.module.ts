@@ -24,6 +24,7 @@ const routes: Routes = [
     children:[
       { path: '', redirectTo: 'search', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
+      { path: 'car/:id', component: CarComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'search', component: SearchComponent}
     ]
