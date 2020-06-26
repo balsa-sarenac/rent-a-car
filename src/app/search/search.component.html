@@ -6,16 +6,14 @@
         <div class="d-flex flex-row" id="basicSearch">
             <div class="d-flex flex-column" id="sp">
                 <label id = "label" for="pickUpPlace">Pick up place</label>
-                <input
-                type="text"
-                name="PickUpPlace"
-                id="pickUpPlace"
-                class="form-control"
-                />
+                <select class="form-control" [(ngModel)]="search.pickUpPlace" id="pickUpPlace">
+                  <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+               </select>
             </div>
             <div class="d-flex flex-column" id="sp">
                 <label id = "label" for="pickUpPlace">From </label>
                 <input
+                [(ngModel)] = "search.fromDate"
                 type="date"
                 name="From"
                 id="from"
@@ -25,6 +23,7 @@
             <div class="d-flex flex-column" id="sp">
                 <label id = "label" for="to">To</label>
                 <input
+                [(ngModel)] = "search.toDate"
                 type="date"
                 name="to"
                 id="to"
@@ -32,10 +31,10 @@
                 />
             </div>
             <div class="d-flex flex-column">
-                <button class="btn btn-outline-success" id="btnSearch">Search</button>
+                <button class="btn btn-outline-success" id="btnSearch" (click) = "searchAds(0)">Search</button>
             </div> 
             <div class="d-flex flex-column">
-                <button class="btn btn-outline-danger" id="btnSearch">Clear</button>
+                <button class="btn btn-outline-danger" id="btnSearch" (click) = "clear()">Clear</button>
             </div> 
         </div>
         <div class="d-flex flex-row">
@@ -43,79 +42,79 @@
                 <h4>Additional search</h4>
                 <div class="form-group">
                     <label id = "label" for="mark">Mark</label>
-                    <select class="form-control" id="mark">
-                       <option>Marka</option>
+                    <select class="form-control" [(ngModel)]="search.mark" id="mark">
+                       <option *ngFor="let mark of marks" [ngValue]="mark">{{mark.name}}</option>
                     </select>
                  </div>
-                 <div class="form-group">
+                 <div class="form-group" *ngIf = "search.mark.id != null">
                     <label id = "label" for="model">Model</label>
-                    <select class="form-control" id="model">
-                       <option>Model</option>
+                    <select class="form-control" [(ngModel)]= "search.model" id="model">
+                       <option *ngFor="let model of search.mark.models" [ngValue] = "model">{{model.name}}</option>
                     </select>
                  </div>
                  <div class="form-group">
                     <label id = "label" for="fuel">Fuel</label>
-                    <select class="form-control" id="fuel">
-                       <option>Fuel</option>
+                    <select class="form-control" [(ngModel)]= "search.fuel" id="fuel">
+                       <option *ngFor="let fuel of fuels" [ngValue]="fuel">{{fuel.type}}</option>
                     </select>
                  </div>
                  <div class="form-group">
                     <label id = "label" for="gearbox">Gearbox</label>
-                    <select class="form-control" id="gearbox">
-                       <option>Gearbox</option>
+                    <select class="form-control" [(ngModel)]= "search.gearbox" id="gearbox">
+                       <option *ngFor="let gearbox of gearboxes" [ngValue]="gearbox">{{gearbox.type}}</option>
                     </select>
                  </div>
                  <div class="form-group">
                     <label id = "label" for="carClass">Class</label>
-                    <select class="form-control" id="carClass">
-                       <option>Class</option>
+                    <select class="form-control" [(ngModel)]= "search.carClass" id="carClass">
+                       <option *ngFor="let class of classes" [ngValue]="class">{{class.name}}</option>
                     </select>
                  </div>
                  <div class="d-flex flex-row">
                     <div class="form-group flex-column" style="margin-right: 5px;">
                         <label id = "label" for="priceFrom">Price from</label>
-                        <input type="number" min="0" name="priceFrom" id="priceFrom" class="form-control"/>
+                        <input [(ngModel)] = "search.priceFrom" type="number" min="0" name="priceFrom" id="priceFrom" class="form-control"/>
                      </div> 
                      <div class="form-group flex-column">
                         <label id = "label" for="prceTo">Price to</label>
-                        <input type="number" min="0" name="priceTo" id="priceTo" class="form-control"/>
+                        <input [(ngModel)] = "search.priceTo" type="number" min="0" name="priceTo" id="priceTo" class="form-control"/>
                      </div> 
                  </div>
                  <div class="d-flex flex-row">
                     <div class="form-group flex-column" style="margin-right: 5px;">
                         <label id = "label" for="kiloemtrageFrom">Kilometrage from</label>
-                        <input type="number" min="0" name="kiloemtrageFrom" id="kiloemtrageFrom" class="form-control"/>
+                        <input [(ngModel)] = "search.kilometrageFrom" type="number" min="0" name="kiloemtrageFrom" id="kiloemtrageFrom" class="form-control"/>
                      </div> 
                      <div class="form-group flex-column">
                         <label id = "label" for="kilometrageTo">Kilometrage to</label>
-                        <input type="number" min="0" name="kilometrageTo" id="kilometrageTo" class="form-control"/>
+                        <input [(ngModel)] = "search.kilometrageTo" type="number" min="0" name="kilometrageTo" id="kilometrageTo" class="form-control"/>
                      </div> 
                  </div>
                  <div class="form-group">
                     <label id = "label" for="kilometrageToPass">Kilometrage to pass</label>
-                    <input type="number" min="0" name="kilometrageToPass" id="kilometrageToPass" class="form-control"/>
+                    <input [(ngModel)] = "search.kilometrageDrive" type="number" min="0" name="kilometrageToPass" id="kilometrageToPass" class="form-control"/>
                  </div>
                  <div class="d-flex flex-row">
                     <div class="form-group flex-column" style="margin-right: 5px;">
                         <label id = "label" for="childSeats">Child seats</label>
-                        <input type="number" min="0" name="childSeats" id="childSeats" class="form-control"/>
+                        <input [(ngModel)] = "search.numberOfChildSeats" type="number" min="0" name="childSeats" id="childSeats" class="form-control"/>
                      </div> 
                      <div class="form-group flex-column">
                         <label id = "label" for="cdw">CDW</label>
-                        <input type="checkbox" name="cdw" id="cdw" class="form-control"/>
+                        <input [(ngModel)] = "search.cdw" type="checkbox" name="cdw" id="cdw" class="form-control"/>
                      </div> 
                  </div>
                  <div>
-                    <button class="btn btn-outline-success" id="btnSearchSecondary">Search</button>
+                    <button class="btn btn-outline-success" id="btnSearchSecondary" (click) = "searchAds(0)">Search</button>
                  </div>
                  <div>
-                    <button class="btn btn-outline-danger" id="btnSearchSecondary">Clear</button>
+                    <button class="btn btn-outline-danger" id="btnSearchSecondary" (click) ="clearAdditional()">Clear</button>
                  </div>
             </div>
-            <div class="d-flex flex-column" id = "results">
+            <div class="d-flex flex-column" id = "results" >
                 <div class="d-flex flex-row">
                     <div class="form-group">
-                        <select class="form-control" id="sort">
+                        <select class="form-control" [(ngModel)] = "sortSelected" (change) = "sort()" id="sort">
                            <option>Sort by</option>
                            <option>Price higher</option>
                            <option>Price lower</option>
@@ -126,9 +125,41 @@
                         </select>
                      </div>
                 </div>
-                <div >
-                        oglasi ovdje
+                <div>
+                     <div id="ad" class="d-flex flex-row" *ngFor="let ad of ads" >
+                           <div style="width: 25%; height: 150px;">
+                              <svg class="bd-placeholder-img card-img-top" width="150px" height="150px" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><rect width="100%" height="100%" fill="#55595c"/><text x="25%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                           </div>
+                           <div class="d-flex flex-column" style="margin-left: 15px; width:25%">
+                              <h6>{{ad.car.mark.name}} {{ad.car.model.name}}</h6>
+                              <span><i><u>From:</u></i></span>
+                              {{ad.fromDate | date: 'mediumDate'}}
+                              <span><i><u>To:</u></i></span>
+                              {{ad.toDate | date: 'mediumDate'}}
+                           </div>
+                           <div class="d-flex flex-column" style="margin-left: 30px; margin-right: 30px; width:25%">
+                              <span><i><u>Price per day:</u></i></span>
+                              {{ad.priceList.perDay}} DIN
+                              <span><i><u>Kilometrage:</u></i></span>
+                              {{ad.car.kilometrage}}km
+                              <span><i><u>Grade:</u></i></span>
+                              {{ad.car.overallGrade}}
+                           </div>
+                           <div class="d-flex flex-column" style="margin-right: 15px; margin-top: 15px; width:20%">
+                              <button class="btn btn-outline-info" (click) = "view(ad)" >View</button>
+                              <br>
+                              <button *ngIf="role == 'ROLE_USER'" class="btn btn-outline-success" >Add to cart</button>
+                           </div>
+                     </div>
+                     <div class="d-flex flex-wrap p-2 justify-content-center">
+                        <ul class="pagination">
+                        <li class="page-item active" *ngFor = "let i of pages">
+                          <a class="page-link" (click) = "searchAds(i-1)">{{i}}</a>
+                        </li>
+                        </ul>
+                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
