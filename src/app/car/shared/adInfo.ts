@@ -1,4 +1,5 @@
 import { CarInfo } from './carInfo';
+import { PriceList } from './priceList';
 
 export interface AdInfo {
     car: CarInfo,
@@ -8,5 +9,7 @@ export interface AdInfo {
     toDate: Date;
     allowedKilometrage: Number;
     priceListId: Number;
+    priceList: PriceList;
     id: number;
+    pages: number;
 }

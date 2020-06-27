@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +25,10 @@ import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { CommentComponent } from './comment/comment.component';
 import { PastRequestsComponent } from './requests/past-requests/past-requests.component';
 import { StatisticsComponent } from './car/statistics/statistics.component';
+import { HomepageAdminComponent } from './homepage/homepage-admin/homepage-admin.component';
+import { HomepageUsersComponent } from './homepage/homepage-users/homepage-users.component';
+import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/homepage-unregistred.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +43,19 @@ import { StatisticsComponent } from './car/statistics/statistics.component';
     CommentComponent,
     PastRequestsComponent,
     StatisticsComponent,
+    HomepageAdminComponent,
+    HomepageUsersComponent,
+    HomepageUnregistredComponent,
+    SearchComponent,
   ],
-  imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
+  imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
+            ToastrModule.forRoot({
+              timeOut: 3000,
+              preventDuplicates: true,
+              resetTimeoutOnDuplicate: true,
+              progressBar: true,
+              enableHtml: true
+            })],
   providers: [CarService, RequestService, AuthService, ChatService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent],
