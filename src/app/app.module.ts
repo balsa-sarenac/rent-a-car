@@ -29,6 +29,7 @@ import { HomepageAdminComponent } from './homepage/homepage-admin/homepage-admin
 import { HomepageUsersComponent } from './homepage/homepage-users/homepage-users.component';
 import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/homepage-unregistred.component';
 import { SearchComponent } from './search/search.component';
+import { UsersComponent } from './auth/users/users.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SearchComponent } from './search/search.component';
     HomepageUsersComponent,
     HomepageUnregistredComponent,
     SearchComponent,
+    UsersComponent,
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
             ToastrModule.forRoot({
