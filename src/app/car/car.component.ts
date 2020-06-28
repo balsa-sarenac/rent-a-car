@@ -3,7 +3,8 @@ import { CarService } from './shared/car.service';
 import { CommentService } from '../comment/shared/comment.service';
 import { IComment } from '../comment/shared/comment';
 import { AdInfo } from './shared/adInfo';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common'
 
 @Component({
   selector: 'app-car',
@@ -18,11 +19,13 @@ export class CarComponent implements OnInit {
   comments: IComment[];
   id: number;
   private sub: any;
+  role: string = '';
 
-  constructor(private carService: CarService,
-    private commentService: CommentService, private route: ActivatedRoute) { }
+  constructor(private carService: CarService, private _location: Location,
+    private commentService: CommentService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem("User-role");
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
 
@@ -52,6 +55,10 @@ export class CarComponent implements OnInit {
     };
     this.commentService.createComment(this.comment).subscribe();
     this.commentText = "";
+  }
+
+  back(){
+    this._location.back();
   }
 
 }
