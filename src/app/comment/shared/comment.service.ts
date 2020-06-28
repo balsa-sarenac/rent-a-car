@@ -11,13 +11,13 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   getComments() {
-    //return this.http.get<any>('http://localhost:8083/comment/all');
-    return this.http.get<any>(environment.api + '/car/comment/all');
+    return this.http.get<any>('http://localhost:8080/comment');
+    //return this.http.get<any>(environment.api + '/car/comment');
   }
 
   getCommentsForCar(carId: number) {
-    //return this.http.get<any>('http://localhost:8083/comment/' + carId);
-    return this.http.get<any>(environment.api + '/car/comment/' + carId);
+    return this.http.get<any>('http://localhost:8080/comment/car/' + carId);
+    //return this.http.get<any>(environment.api + '/car/comment/car/' + carId);
   }
 
   acceptOrRefuse(id: number, decision: boolean) {
