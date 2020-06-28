@@ -8,11 +8,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./homepage-users.component.css']
 })
 export class HomepageUsersComponent implements OnInit {
-
+  role: string = '';
   constructor(private router: Router,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem("User-role");
   }
 
   logout(){
