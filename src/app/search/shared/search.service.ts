@@ -9,8 +9,8 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  searchAds(search: Search, page: number) {
-    //return this.http.post<any>(environment.api + "search/ad/search/"+ page, search);
-    return this.http.post<any>("http://localhost:8080/ad/search/"+ page,search);
+  searchAds(search: Search, page: number, sort: string) {
+    //return this.http.post<any>(environment.api + "search/ad/search/"+ page+"/"+sort, search);
+    return this.http.post<any>("http://localhost:8080/ad/search/"+ page+"/"+sort,search);
   }
 }
