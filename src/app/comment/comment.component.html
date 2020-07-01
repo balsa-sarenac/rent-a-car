@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-center">
     <div class="d-flex flex-column col-sm-7">
-       <h1 class="display-4" style="text-align: center;">Comments</h1>
+       <h1 class="display-4" style="text-align: center; border-bottom: 2px solid #ccc;">Comments</h1>
+       <h3 class="display-4" style="text-align: center;" *ngIf = "comments.length == 0">No comments</h3>
        <div *ngFor = "let comment of comments" class="card">
           <div class="card-body" >
              <h5 class="card-title">User: {{comment.userUsername}}</h5>

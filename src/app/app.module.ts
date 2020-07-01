@@ -30,6 +30,7 @@ import { HomepageUsersComponent } from './homepage/homepage-users/homepage-users
 import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/homepage-unregistred.component';
 import { SearchComponent } from './search/search.component';
 import { UsersComponent } from './auth/users/users.component';
+import { CommentAndGradeComponent } from './comment-and-grade/comment-and-grade.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { UsersComponent } from './auth/users/users.component';
     HomepageUnregistredComponent,
     SearchComponent,
     UsersComponent,
+    CommentAndGradeComponent,
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
             ToastrModule.forRoot({

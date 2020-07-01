@@ -5,11 +5,13 @@ import { RequestService } from '../shared/request.service';
 import { CommentService } from 'src/app/comment/shared/comment.service';
 import { GradeService } from 'src/app/comment/shared/grade.service';
 import { IComment } from 'src/app/comment/shared/comment';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Message } from 'src/app/chat/shared/message';
 import { ChatService } from 'src/app/chat/shared/chat.service';
 import { IReport } from '../shared/ireport.report';
+import { ToastrService } from 'ngx-toastr';
+import { IGrade } from 'src/app/comment/shared/grade';
 
 @Component({
   selector: 'app-past-requests',
@@ -20,7 +22,7 @@ export class PastRequestsComponent implements OnInit {
   requests: IRequest[];
   request: IRequest;
   report: IReport;
-  textComment: string;
+  textComment: string ='';
   textCommentReport: string;
   currentRate: number = 0;
   myModal: NgbModalRef;
@@ -30,6 +32,8 @@ export class PastRequestsComponent implements OnInit {
   newMessage: Message;
   companionId: number;
   kilometrage: number;
+  checkCommentFlag: boolean = false;
+  checkGradeFlag: boolean = false;
 
   constructor(private requestService: RequestService,
     private modalService: NgbModal,
@@ -37,6 +41,8 @@ export class PastRequestsComponent implements OnInit {
     private gradeService: GradeService,
     private chatService: ChatService,
     private formBuilder: FormBuilder,
+    private _toastr: ToastrService,
+    private route: ActivatedRoute,
     private router: Router) { this.messageForm = this.formBuilder.group({ text: '' }); }
 
   ngOnInit(): void {
@@ -44,9 +50,38 @@ export class PastRequestsComponent implements OnInit {
     this.user = localStorage.getItem('User-role');
   }
 
+  checkDate(date){
+    var today = new Date();
+    var inputDate = new Date(date);
+
+    if(inputDate.setHours(0,0,0,0) <= today.setHours(0,0,0,0)) {
+        return true;
+    }
+
+    return false;
+  }
+
+  checkComment(id){
+    this.commentService.checkComment(id , localStorage.getItem('Username')).subscribe(
+      data =>{
+        this.checkCommentFlag = data;
+      }
+    );
+  }
+
+  checkGrade(id){
+    this.gradeService.checkGrade(id , localStorage.getItem('Username')).subscribe(
+      data =>{
+        this.checkGradeFlag = data;
+      }
+    );
+  }
+
   open(content, req) {
     this.myModal = this.modalService.open(content);
     this.request = req;
+    this.checkComment(this.request.adId);
+    this.checkGrade(this.request.adId);
   }
 
   openReport(content, req) {
@@ -55,30 +90,55 @@ export class PastRequestsComponent implements OnInit {
   }
 
   send() {
-    if (this.textComment == undefined || this.textComment == "") {
-      alert("Please, fill the comment");
+    if (this.textComment == '' && this.currentRate == 0) {
+      this._toastr.info("Please, fill the information")
       return;
     }
-    let comment: IComment = {
-      id: null,
-      text: this.textComment,
-      approved: false,
-      adId: this.request.adId,
-      carId: null,
-      userUsername: 'bax'
-    };
-    this.commentService.createComment(comment).subscribe();
+
+    if(this.textComment != ""){
+      let comment: IComment = {
+        id: null,
+        text: this.textComment,
+        approved: false,
+        adId: this.request.adId,
+        carId: null,
+        userUsername: localStorage.getItem('Username')
+      };
+      this.commentService.createComment(comment).subscribe(
+        data=>{
+          this._toastr.success("Comment succesfully created", "Comment");
+        },
+        error =>{
+          if(error.status == 400)
+            this._toastr.info("Comment already sent", "Comment");
+          else
+            this._toastr.error("Error creating comment", "Comment");
+        }
+      );
+    }
 
     if (this.currentRate != 0) {
-      let grade: any = {
+      let grade: IGrade = {
         id: null,
         grade: this.currentRate,
-        adId: 4,
+        adId: this.request.adId,
         carId: null,
-        userUsername: 'bax'
+        userUsername: localStorage.getItem('Username')
       };
-      this.gradeService.createGrade(grade).subscribe();
+      this.gradeService.createGrade(grade).subscribe(
+        data=>{
+          this._toastr.success("Grade succesfully created", "Grade");
+        },
+        error =>{
+          if(error.status == 400)
+            this._toastr.info("Grade already sent", "Grade");
+          else
+            this._toastr.error("Error creating grade", "Grade");
+        }
+      );
     }
+    this.textComment = '';
+    this.currentRate = 0;
     this.myModal.close();
   }
 
@@ -116,7 +176,7 @@ export class PastRequestsComponent implements OnInit {
   }
 
   openAd(req: IRequest) {
-    this.router.navigate(['/car', req.adId]);
+    this.router.navigate(['car', req.adId],{relativeTo: this.route.parent});
   }
 
   onSubmit(mess: { text: String; }) {

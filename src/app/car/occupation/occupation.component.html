@@ -1,48 +1,62 @@
 <div class="d-flex justify-content-center">
-    <div class="d-flex flex-column col-sm-3 " style="background-color:lightgray; margin: 5px; height:100%">
-        <form
-            [formGroup]="newOccupationForm"
-            class="needs-validation col-sm-8"
-            (ngSubmit)="onSubmit(newOccupationForm.value)"
-        >
-        <h1 class="display-4" style="text-align: center;">Set occupation</h1>
-        <div class="form-group col-sm-6 ">
-            <label for="mark">Car </label>
-            <select
-                class="form-control"
-                formControlName="carId"
-                style="width: 310px;"
-                id="car">
-                <option
-                  *ngFor="let car of cars"
-                  [value]="car.id"
-                  >{{ car.mark.name }} {{car.model.name}}</option
-               >
-            </select>
-        </div>
-        <div class="form-group col-sm-6">
-            <label for="toDate">From date</label>
-            <input
-               type="date"
-               formControlName="dateFrom"
-               id="dateFrom"
-               class="form-control"
-               style="width: 310px;"
-            />
-         </div> 
-         <div class="form-group col-sm-6" >
-            <label for="toDate">To date</label>
-            <input
-               type="date"
-               formControlName="dateTo"
-               id="dateTo"
-               class="form-control"
-               style="width: 310px;"
-            />
-         </div>
-         <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
-            Submit
-         </button>
-        </form>
-    </div>
+   <div class="d-flex flex-column col-sm-8">
+       <div>
+           <h3 class="display-4" style="text-align: center;">Set the occupation</h3>
+       </div>
+       <div class="d-flex flex-row justify-content-center" id="basicSearch">
+            <div class="d-flex flex-column" id="sp">
+               <label  id = "label" for="mark">Car </label>
+               <select
+                  class="form-control"
+                  [(ngModel)] ="selectedOccupation.carId"
+                  id="car">
+                  <option
+                     *ngFor="let car of cars"
+                     [value]="car.id"
+                     >{{ car.mark.name }} {{car.model.name}}</option
+                  >
+               </select>
+            </div>
+            <div class="d-flex flex-column" id="sp">
+               <label  id = "label" for="toDate">From date</label>
+               <input
+                  type="date"
+                  [(ngModel)] ="selectedOccupation.dateFrom"
+                  id="dateFrom"
+                  class="form-control"
+               />
+            </div> 
+            <div class="d-flex flex-column" id="sp">
+               <label  id = "label" for="toDate">To date</label>
+               <input
+                  type="date"
+                  [(ngModel)] ="selectedOccupation.dateTo"
+                  id="dateTo"
+                  class="form-control"
+               />
+            </div> 
+            <div class="d-flex flex-column" >
+               <button class="btn btn-outline-success" id="btnSearch" (click) = "create()">Add</button>
+            </div>
+       </div>
+       <div style="margin:25px ;">
+         <h5 class="display-4" style="text-align: center;">Active occupations</h5>
+         <table class="table table-hover">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Car</th>
+              </tr>
+            </thead>
+            <tbody>
+               <tr class="table-info" *ngFor = "let o of occupations">
+                  <td>{{o.dateFrom | date: 'mediumDate'}}</td>
+                  <td>{{o.dateTo | date: 'mediumDate'}}</td>
+                  <td>{{o.car.mark.name}} {{o.car.model.name}}</td>
+                </tr>
+            </tbody>
+         </table>
+       </div> 
+   </div>
 </div>

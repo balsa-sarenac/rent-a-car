@@ -63,11 +63,13 @@ export class RegisterComponent implements OnInit {
         else
             this._toastr.success("You have succesfully sent reqistration request", "Registration");
 
+        this.registerForm.reset();
+
       }, 
       error =>{
         this._toastr.error("Error during registration", "Registration");
       }
     );
-    this.registerForm.reset();
+    
   }
 }

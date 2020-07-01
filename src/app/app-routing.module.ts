@@ -17,6 +17,7 @@ import { HomepageAdminComponent } from './homepage/homepage-admin/homepage-admin
 import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/homepage-unregistred.component';
 import { SearchComponent } from './search/search.component';
 import { UsersComponent } from './auth/users/users.component';
+import { CommentAndGradeComponent } from './comment-and-grade/comment-and-grade.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
       { path: 'car/:id', component: CarComponent },
       { path: 'new-car', component: NewCarComponent },
       { path: 'statistics', component: StatisticsComponent },
+      { path: 'commentsAndGrades', component: CommentAndGradeComponent },
       { path: 'occupation', component: OccupationComponent },
     ]
   },
