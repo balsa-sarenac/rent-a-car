@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IRequest } from './shared/irequest.request';
 import { RequestService } from './shared/request.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-requests',
@@ -16,7 +16,7 @@ export class RequestsComponent implements OnInit {
   currentRate: number = 0;
   myModal: NgbModalRef;
 
-  constructor(private requestService: RequestService, private router: Router) { }
+  constructor(private requestService: RequestService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getRequests();
@@ -27,32 +27,39 @@ export class RequestsComponent implements OnInit {
       .subscribe((data: IRequest[]) => this.requests = data);
   }
 
+  refresh(){
+    this.requestService.getActive()
+      .subscribe((data: IRequest[]) => this.requests = data);
+  }
+
   accept(req: IRequest) {
     if (req.bundleId == -1)
       this.requestService.acceptRequest(req.id)
-        .subscribe();
+        .subscribe(
+          data=> {this.refresh()}
+        );
     else
       this.requestService.acceptBundle(req.bundleId)
-        .subscribe();
+        .subscribe( data=> {this.refresh()});
   }
 
   refuse(req: IRequest) {
     if (req.bundleId == -1)
       this.requestService.refuseRequest(req.id)
-        .subscribe();
+        .subscribe( data=> {this.refresh()});
     else
       this.requestService.refuseBundle(req.bundleId)
-        .subscribe();
+        .subscribe( data=> {this.refresh()});
   }
 
   cancel(req: IRequest) {
     if (req.bundleId == -1)
-      this.requestService.cancelRequest(req.id).subscribe();
+      this.requestService.cancelRequest(req.id).subscribe( data=> {this.refresh()});
     else
-      this.requestService.cancelBundle(req.bundleId).subscribe();
+      this.requestService.cancelBundle(req.bundleId).subscribe( data=> {this.refresh()});
   }
 
   openAd(req: IRequest) {
-    this.router.navigate(['/car', req.adId]);
+    this.router.navigate(['car', req.adId], {relativeTo: this.route.parent});
   }
 }
