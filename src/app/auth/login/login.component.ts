@@ -35,18 +35,19 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("Refresh-token", data.refreshToken);
         localStorage.setItem("Username", data.username);
         localStorage.setItem("User-role", data.role);
-
+        this.loginForm.reset();
+        
         if(data.role == 'ROLE_ADMIN'){
           this.router.navigate(['adminHomepage']);
         }else if(data.role != ''){
           this.router.navigate(['usersHomepage']);
         }
         this.toastr.success('Successfully logged in', 'Login');
+        
       },
       error =>{
         this.toastr.info('Bad credentials', 'Login');
       }
     );
-    this.loginForm.reset();
   }
 }
