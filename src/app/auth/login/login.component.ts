@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     // sent to back-end
     this.authService.login(userData).subscribe(
       data=>{
+        localStorage.clear();
         localStorage.setItem("User-token", data.accessToken);
         localStorage.setItem("Expires-in", data.expiresIn);
         localStorage.setItem("Refresh-token", data.refreshToken);

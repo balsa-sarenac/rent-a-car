@@ -33,6 +33,10 @@
     padding: 10px;
 }
 
+#span{
+    color:darkblue;
+}
+
 #results{
     width: 75%;
     margin-top: 20px;
@@ -61,4 +65,11 @@
     border-style: solid;
     border-width: 1px;
     margin: 10px;
+}
+
+#d1{
+    border-style: double;
+    border-radius: 10px;
+    border-color:cadetblue;
+    padding: 10px; 
 }

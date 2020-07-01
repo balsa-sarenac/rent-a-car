@@ -1,6 +1,14 @@
 export interface User {
-    id: Number,
-    firstName: String,
-    lastName: String,
-    companyName: String
+    id: number,
+    firstName: string,
+    lastName: string,
+    username: string,
+    companyName: string,
+    isAdmin: boolean,
+    enabled: boolean,
+    address: string,
+    businessID: string,
+    email: string,
+    roles: string[],
+    password: string
 }

@@ -139,14 +139,14 @@
                            </div>
                            <div class="d-flex flex-column" style="margin-left: 30px; margin-right: 30px; width:25%">
                               <span><i><u>Price per day:</u></i></span>
-                              {{ad.priceList.perDay}} DIN
+                              {{ad.priceList.perDay }} DIN
                               <span><i><u>Kilometrage:</u></i></span>
-                              {{ad.car.kilometrage}}km
+                              {{ad.car.kilometrage | number}}km
                               <span><i><u>Grade:</u></i></span>
                               {{ad.car.overallGrade}}
                            </div>
                            <div class="d-flex flex-column" style="margin-right: 15px; margin-top: 15px; width:20%">
-                              <button class="btn btn-outline-info" (click) = "view(ad)" >View</button>
+                              <button class="btn btn-outline-info" (click) = "view(viewModal,ad)" >View</button>
                               <br>
                               <button *ngIf="role == 'ROLE_USER'" class="btn btn-outline-success" >Add to cart</button>
                            </div>
@@ -158,9 +158,92 @@
                         </li>
                         </ul>
                      </div>
-                </div>
-                
+                </div>    
             </div>
         </div>
     </div>
 </div>
+<ng-template #viewModal let-modal>
+   <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{ad.car.mark.name}} {{ad.car.model.name}}</h4>
+      <button
+         type="button"
+         class="close"
+         aria-label="Close"
+         (click)="modal.dismiss('Cross click')"
+      >
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+      <div class="d-flex flex-column">
+         <div class="d-flex flex-row">
+            <div class="d-flex flex-column" id="d1" style="width: 40%;">
+               <div class="card mb-4 shadow-sm">
+                  <svg class="bd-placeholder-img card-img-top" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                  <div class="card-body">
+                     <div class="d-flex justify-content-between align-items-center">
+                     <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">previous</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">next</button>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+            <span id="span"><i><u>From:</u></i></span>
+            {{ad.fromDate | date : 'mediumDate'}} 
+            <span id="span"><i><u>To:</u></i></span>
+            {{ad.toDate | date : 'mediumDate'}}
+            </div>
+            <div id="d1" class="d-flex flex-column" style="margin-left: 20px; width: 28%;">
+               <span id="span"><i><u>Pick up place:</u></i></span>
+               {{ad.pickUpPlace}}
+               <span id="span"><i><u>Fuel:</u></i></span>
+               {{ad.car.fuel.type}}
+               <span id="span"><i><u>Gearbox:</u></i></span>
+               {{ad.car.gearbox.type}}
+               <span id="span"><i><u>Class:</u></i></span>
+               {{ad.car.carClass.name}}
+               <span id="span"><i><u>Child Seats:</u></i></span>
+               {{ad.car.numberOfChildSeats}}
+               <span id="span"><i><u>Allowed kilometrage:</u></i></span>
+               {{ad.allowedKilometrage | number}}km
+               <span id="span"><i><u>Kilometrage:</u></i></span>
+               {{ad.car.kilometrage | number}}km
+               <span id="span"><i><u>CDW available:</u></i></span>
+               {{ad.cdwAvailable}}
+               <span id="span"><i><u>Has android:</u></i></span>
+               {{ad.car.hasAndroid}}
+            </div>
+            <div id="d1" class="d-flex flex-column" style="margin-left: 20px; width: 28%">
+               <h3>Prices</h3><br>
+               <span id="span"><i><u>Per day:</u></i></span>
+               {{ad.priceList.perDay}} DIN
+               <span id="span"><i><u>Extra kilometrage:</u></i></span>
+               {{ad.priceList.extraKilometrage}} DIN
+               <span id="span"><i><u>Discount:</u></i></span>
+               {{ad.priceList.discount}} %
+               <span id="span"><i><u>CDW:</u></i></span>
+               {{ad.priceList.cdw}} DIN
+               <h3 style="margin-top: 15px;">Grades</h3><br>
+               <span id="span"><i><u>Overall grade:</u></i></span>
+               {{ad.car.overallGrade}} 
+               <span id="span"><i><u>Number of grades:</u></i></span>
+               {{ad.car.numberGrades}}
+            </div>
+         </div>
+         <div>
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
+               <h6 class="border-bottom border-gray pb-2 mb-0">Comments</h6>
+               <div class="media text-muted pt-3" *ngFor = " let comment of comments">
+                 <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                   <strong class="d-block text-gray-dark">@{{comment.userUsername}}</strong>
+                   {{comment.text}}
+                 </p>
+               </div>
+           </div>
+         </div>
+      </div>
+   </div>
+</ng-template>

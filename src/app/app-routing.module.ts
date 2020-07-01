@@ -16,6 +16,7 @@ import { HomepageUsersComponent } from './homepage/homepage-users/homepage-users
 import { HomepageAdminComponent } from './homepage/homepage-admin/homepage-admin.component';
 import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/homepage-unregistred.component';
 import { SearchComponent } from './search/search.component';
+import { UsersComponent } from './auth/users/users.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     children:[
       { path: '', redirectTo: 'chat', pathMatch: 'full' },
       { path: 'chat', component: ChatComponent },
+      { path: 'search', component: SearchComponent},
       { path: 'requests', component: RequestsComponent },
       { path: 'past-requests', component: PastRequestsComponent },
       { path: 'car/:id', component: CarComponent },
@@ -45,6 +47,8 @@ const routes: Routes = [
     children:[
       { path: '', redirectTo: 'comments', pathMatch: 'full' },
       { path: 'comments', component: CommentComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'users', component: UsersComponent }
     ]
   },
   

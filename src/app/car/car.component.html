@@ -1,6 +1,9 @@
 <div class="d-flex justify-content-center">
     <div class="d-flex flex-column col-sm-8 " style="background-color:lightgray;">
-        <div class="d-flex flex-row " style="margin-top: 5px;">
+        <div class="d-flex flex-row" style="margin-top: 5px;">
+            <button class="btn btn-outline-info" (click) ="back()"  *ngIf="role == null">Back</button>
+        </div>
+        <div class="d-flex flex-row " style="margin-top: 0px;">
             <div class="my-3 p-3 bg-white rounded shadow-sm" style="width: 50%; height: 800px; background-color: aqua; margin-right: 5px;">
                 <div class="col-md-12">
                     <div class="card mb-4 shadow-sm">
@@ -16,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 mb-3">
-                    <label for="firstName">From date</label>
+                    <label for="fromDate">From date</label>
                     <input type="text" class="form-control" id="firstName" placeholder="From" value=""  [(ngModel)] = "ad.fromDate" disabled>
                 </div>
                 <div class="col-md-9 mb-3">
@@ -85,11 +88,11 @@
                     {{comment.text}}
                   </p>
                 </div>
-                <div class="media text-muted pt-3 d-flex flex-column">
+                <div class="media text-muted pt-3 d-flex flex-column" *ngIf = "role =='ROLE_AGENT'">
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)] = "commentText"></textarea>
                     <br>
                     <button type="button" class="btn btn-primary" style="float: left;" (click) = "sendComment()">Comment</button>
                 </div>
-        </div>
+            </div>
     </div>
 </div>

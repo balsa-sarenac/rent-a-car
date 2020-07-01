@@ -16,4 +16,6 @@ export interface CarInfo {
     images: String[];
     id: number;
     overallGrade: number;
+    numberGrades: number;
+
 }

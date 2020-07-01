@@ -10,7 +10,10 @@ import { ToastrService } from 'ngx-toastr';
 import { SearchService } from './shared/search.service';
 import { Ad } from '../car/shared/ad';
 import { AdInfo } from '../car/shared/adInfo';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IComment } from '../comment/shared/comment';
+import { CommentService } from '../comment/shared/comment.service';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-search',
@@ -28,12 +31,18 @@ export class SearchComponent implements OnInit {
   role: string = '';
   cities: string[];
   pages: number[];
+  viewModal: NgbModalRef;
   sortSelected: string = 'Sort by';
+  ad: AdInfo;
+  comments: IComment[];
   
   constructor(private carService: CarService,
+              private route: ActivatedRoute,
               private _toastr: ToastrService,
               private searchService: SearchService,
-              private router: Router) {
+              private router: Router,
+              private modalService: NgbModal,
+              private commentService: CommentService) {
     this.search = {
     cdw :false,
     kilometrageDrive : 0,
@@ -128,7 +137,7 @@ export class SearchComponent implements OnInit {
           return;
       }
 
-      this.searchService.searchAds(this.search,page).subscribe(
+      this.searchService.searchAds(this.search,page,this.sortSelected).subscribe(
         data => {
             this.ads = data;
             this.pages = [];
@@ -151,12 +160,23 @@ export class SearchComponent implements OnInit {
       );
   }
 
-  view(ad: AdInfo){
-    console.log(ad.id);
+  view(content, ad: AdInfo){
+    this.carService.getOneAd(ad.id).subscribe(
+      data => {
+        this.ad = data;
+        this.commentService.getCommentsForCar(this.ad.car.id).subscribe(
+          data => {
+            this.comments = data
+          }
+        );
+      }
+    );
+
+    this.viewModal = this.modalService.open(content, { size: 'lg', scrollable: true });
   }
 
   sort(){
-    console.log(this.sortSelected);
+    this.searchAds(0);
   }
 
 }
