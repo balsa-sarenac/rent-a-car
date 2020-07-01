@@ -44,9 +44,9 @@ export class CarService {
     return this.http.get<any>("http://localhost:8080/carclass");
   }
 
-  getCarsByUser() {
-    //return this.http.get<any>(environment.api +"/car/car/user");
-    return this.http.get<any>("http://localhost:8080/car/user");
+  getCarsByUser(username: string) {
+    //return this.http.get<any>(environment.api +"/car/car/user/" + username);
+    return this.http.get<any>("http://localhost:8080/car/user/" + username);
   }
 
   getOneAd(id: number) {
