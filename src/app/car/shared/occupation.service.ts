@@ -13,4 +13,9 @@ export class OccupationService {
     //return this.http.post<any>(environment.api + "/car/occupied", occupied);
     return this.http.post<any>("http://localhost:8080/occupied", occupied);
   }
+
+  getOccupations(username: any) {
+    //return this.http.post<any>(environment.api + "/car/occupied/user/" + username);
+    return this.http.get<any>("http://localhost:8080/occupied/user/" + username);
+  }
 }
