@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center" style="margin-top:15px ;">
+    <div class="d-flex flex-column col-sm-10 " style="background-color:lightgray;">
+        <div>
+            <h3 class="display-4" style="text-align: center;">Comments and grades</h3>
+        </div>
+        <div class="d-flex justify-content-center flex-column" >
+            <div class="form-group">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Cars</h6>
+                <select class="form-control" [(ngModel)]= "selectedCar" (change) = "getCommentAndGrades()" id="selectedCar">
+                   <option *ngFor="let car of cars" [ngValue]="car">{{car.mark.name}} {{car.model.name}}</option>
+                </select>
+             </div>
+        </div>
+        <div class="d-flex flex-row">
+            <div class="my-3 p-3 bg-white rounded shadow-sm" style="width: 50%; height: min-content;">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Comments</h6>
+                <div class="media text-muted pt-3  border-bottom border-gray" *ngFor = " let comment of comments">
+                  <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+                  <p class="media-body pb-3 mb-0 small lh-125">
+                    <strong class="d-block text-gray-dark">@{{comment.userUsername}}</strong>
+                    {{comment.text}}
+                  </p>
+                  <button type="button" class="btn btn-primary" style="float: left; " (click) = "addComment(comment)" *ngIf = "comment.userUsername != username">Reply</button>
+                </div>
+                <div class="media text-muted pt-3 d-flex flex-column" *ngIf= "mode =='COMMENT'">
+                    <div class="d-flex flex-column">
+                        <div  class="d-flex flex-row">
+                            To:  @{{selectedComment.userUsername}}<br>
+                        </div>
+                            Text: {{selectedComment.text}}
+                    </div>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)] = "commentText"></textarea>
+                    <br>
+                    <div  class="d-flex flex-row">
+                        <button type="button" class="btn btn-primary" style="float: left;" (click) = "sendComment()">Comment</button>
+                        <button type="button" class="btn btn-danger" style="float: right; margin-left: 420px;" (click) = "cancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <div class="my-3 p-3 bg-white rounded shadow-sm" style="width: 50%; margin-left: 10px; height: min-content;">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Grades</h6>
+                <div class="media text-muted pt-3" *ngFor = " let grade of grades">
+                  <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">@{{grade.userUsername}}</strong>
+                    <ngb-rating  [rate]="grade.grade" readonly = false [max]="5" >
+                        <ng-template let-fill="fill" let-index="index">
+                            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 0">&#9733;</span>
+                        </ng-template>
+                    </ngb-rating>
+                  </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
