@@ -21,8 +21,8 @@
             <div (click)="openAd(req)">
                <td>{{ req.adId }}</td>
                <td>{{ req.pickUpPlace }}</td>
-               <td>{{ req.pickUpDate }}</td>
-               <td>{{ req.returnDate }}</td>
+               <td>{{ req.pickUpDate | date: 'mediumDate' }}</td>
+               <td>{{ req.returnDate | date: 'mediumDate' }}</td>
                <td>{{ req.status }}</td>
                <td>{{ req.bundleId == -1 ? "" : req.bundleId }}</td>
             </div>
@@ -38,7 +38,7 @@
             </td>
             <td>
                <button
-                  *ngIf="req.status == 'paid'"
+                  *ngIf="req.status == 'paid' && checkDate(req.returnDate)"
                   (click)="open(mymodal, req)"
                   class="btn btn-dark"
                >
@@ -74,17 +74,23 @@
       </div>
       <div class="modal-body">
          <label> Comment </label><br />
-         <textarea
+         <textarea *ngIf="checkCommentFlag == false"
             type="text"
             class="form-control"
             id="firstName"
             placeholder="Comment"
             value=""
             [(ngModel)]="textComment"
-         ></textarea
-         ><br />
+         ></textarea>
+         <span *ngIf="checkCommentFlag == true">You have already commented this ad</span>
+         <br />
          <label> Rating </label><br />
-         <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
+         <ngb-rating *ngIf="checkGradeFlag == false" [(rate)]="currentRate" [max]="5">
+            <ng-template let-fill="fill" let-index="index">
+               <span class="star" [class.filled]="fill === 100" [class.bad]="index < 0">&#9733;</span>
+           </ng-template>
+         </ngb-rating>
+         <span *ngIf="checkGradeFlag == true">You have already graded this ad</span>
       </div>
       <div class="modal-footer">
          <button type="button" class="btn btn-outline-dark" (click)="send()">
