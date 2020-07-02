@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-center">
+    <div class="d-flex flex-column col-sm-10">
+        <div >
+            <h3 class="display-4" style="text-align: center;">Price lists</h3>
+        </div>
+        <div class="d-flex justify-content-center border-bottom border-gray p-2">
+            <button class="btn btn-outline-success" id="btnSearchSecondary" (click) = "addPriceList(addModal)">Add</button>
+         </div>
+        <div class="d-flex justify-content-center border border-gray p-2">
+            <div class="d-flex flex-row flex-wrap justify-content-center " >
+            <div *ngIf = "priceLists.length == 0">
+                <h4 class="display-4" style="text-align: center;">No price lists</h4>
+            </div>
+            <div class="d-flex flex-row" style="width: 275px; max-width: 275px; min-width: 275px; margin-right: 10px; margin-top: 10px;" *ngFor = "let p of priceLists">
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">Per day: {{p.perDay}}€ </div>
+                    <div class="card-body">
+                    <p class="card-text">Extra Kilometarage: {{p.extraKilometrage}}€/km</p>
+                    <p class="card-text">Colision Damage Waiver: {{p.cdw}}€</p>
+                    <p class="card-text" *ngIf = "role == 'ROLE_AGENT'">Discount: {{p.discount}}%</p>
+                    <p class="card-text" *ngIf = "role == 'ROLE_AGENT'">Days for discount: {{p.discountDays}}</p>
+                    <button class="btn btn-outline-success" id="btnSearchSecondary" (click) = "editPriceList(addModal,p)">Edit</button>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+ 
+<ng-template #addModal let-modal>
+    <div class="modal-header">
+       <h4 class="modal-title " id="modal-basic-title" *ngIf="mode == 'ADD'">Add price list</h4>
+       <h4 class="modal-title " id="modal-basic-title" *ngIf="mode == 'EDIT'">Edit price list</h4>
+       <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+       >
+          <span aria-hidden="true">&times;</span>
+       </button>
+    </div>
+    <div class="modal-body">
+       <div class="d-flex flex-column">
+          <div class="d-flex flex-row">
+                <div class="d-flex flex-column" id ="ap">
+                    <label id = "label" for="pricePerDay">Price per day</label>
+                    <input [(ngModel)] = "priceList.perDay" type="number" min="0" name="pricePerDay" id="pricePerDay" class="form-control"/>
+                </div>
+                <div class="d-flex flex-column" id ="ap">
+                    <label id = "label" for="priceExtraKilometrage">Price extra kilometrage</label>
+                    <input [(ngModel)] = "priceList.extraKilometrage" type="number" min="0" name="priceExtraKilometrage" id="priceExtraKilometrage" class="form-control"/>
+                </div>
+                <div class="d-flex flex-column" id ="ap">
+                    <label id = "label" for="priceCDW">Price for Collision Damage Waiver</label>
+                    <input [(ngModel)] = "priceList.cdw" type="number" min="0" name="priceCDW" id="priceCDW" class="form-control"/>
+                </div>
+          </div> 
+          <div class="d-flex flex-column" *ngIf ="role == 'ROLE_AGENT'">
+            <div class="d-flex flex-row justify-content-center">
+                <div class="d-flex flex-column" id ="sp">
+                    <label id = "label" for="discount">Discount</label>
+                    <input [(ngModel)] = "priceList.discount" type="number" min="0" name="discount" id="discount" class="form-control"/>
+                </div>
+                <div class="d-flex flex-column" id ="sp">
+                    <label id = "label" for="discountDays">Number days</label>
+                    <input [(ngModel)] = "priceList.discountDays" type="number" min="0" name="discountDays" id="discountDays" class="form-control"/>
+                </div>  
+            </div> 
+          </div>
+          <div  style="margin: 20px;">
+            <button style="float: right;" *ngIf="mode == 'ADD'" class="btn btn-outline-success" id="btnSearchSecondary" (click) = "add()">Add</button>
+            <button style="float: right;" *ngIf="mode == 'EDIT'" class="btn btn-outline-success" id="btnSearchSecondary" (click) = "save()">Save</button>
+          </div>
+       </div>
+    </div>
+ </ng-template>
