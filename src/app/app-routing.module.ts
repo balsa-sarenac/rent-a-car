@@ -18,6 +18,9 @@ import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/ho
 import { SearchComponent } from './search/search.component';
 import { UsersComponent } from './auth/users/users.component';
 import { CommentAndGradeComponent } from './comment-and-grade/comment-and-grade.component';
+import { PriceListComponent } from './price-list/price-list.component';
+import { ProfileComponent } from './auth/profile/profile.component';
+import { BillComponent } from './bill/bill.component';
 
 
 const routes: Routes = [
@@ -37,7 +40,10 @@ const routes: Routes = [
       { path: 'chat', component: ChatComponent },
       { path: 'search', component: SearchComponent},
       { path: 'requests', component: RequestsComponent },
+      { path: 'priceList', component: PriceListComponent },
       { path: 'past-requests', component: PastRequestsComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'bill', component: BillComponent },
       { path: 'car/:id', component: CarComponent },
       { path: 'new-car', component: NewCarComponent },
       { path: 'statistics', component: StatisticsComponent },

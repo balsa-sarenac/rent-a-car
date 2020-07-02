@@ -31,6 +31,9 @@ import { HomepageUnregistredComponent } from './homepage/homepage-unregistred/ho
 import { SearchComponent } from './search/search.component';
 import { UsersComponent } from './auth/users/users.component';
 import { CommentAndGradeComponent } from './comment-and-grade/comment-and-grade.component';
+import { PriceListComponent } from './price-list/price-list.component';
+import { ProfileComponent } from './auth/profile/profile.component';
+import { BillComponent } from './bill/bill.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { CommentAndGradeComponent } from './comment-and-grade/comment-and-grade.
     SearchComponent,
     UsersComponent,
     CommentAndGradeComponent,
+    PriceListComponent,
+    ProfileComponent,
+    BillComponent,
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
             ToastrModule.forRoot({
