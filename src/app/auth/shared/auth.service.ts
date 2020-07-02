@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/car/shared/user';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +38,31 @@ export class AuthService {
     return this.http.get<any>('http://localhost:8080/enable/' + id);
     //return this.http.get<any>(environment.api + '/security/disable/'+id);
   }
+
+  deleteUser(id: number) {
+    return this.http.delete('http://localhost:8080/' + id);
+    //return this.http.delete<any>(environment.api + '/security/'+id);
+  }
+
+  getUser(username: string) {
+    return this.http.get<any>('http://localhost:8080/' + username);
+    //return this.http.delete<any>(environment.api + '/security/'+username);
+  }
+
+  disableEnableRent(id: number, privilege: boolean) {
+    return this.http.get<any>('http://localhost:8080/rentPrivilege/' + privilege + "/" + id);
+    //return this.http.delete<any>(environment.api + '/security/rentPrivilege/' + privilege + "/" + id);
+  }
+
+  editUser(user: User) {
+    return this.http.patch('http://localhost:8080', {id: user.id,
+                                                     companyName: user.companyName,
+                                                     businessID: user.businessID,
+                                                     email: user.email,
+                                                     firstName: user.firstName,
+                                                     lastName: user.lastName,
+                                                     address: user.address });
+    //return this.http.delete<any>(environment.api + '/security/', {});
+  }
+
 }

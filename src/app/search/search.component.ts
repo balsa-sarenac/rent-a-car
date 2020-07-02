@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
   classes: CarClass[];
   fuels: Fuel[];
   search: Search;
-  ads: AdInfo[];
+  ads: AdInfo[] = [];
   role: string = '';
   cities: string[];
   pages: number[];

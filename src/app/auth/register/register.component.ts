@@ -45,7 +45,9 @@ export class RegisterComponent implements OnInit {
       businessID: '',
       email: userData.email,
       password: userData.password,
-      roles: []
+      roles: [],
+      numCanReq: 0,
+      flagPaid: false
     };
 
     if(this.role == 'ROLE_ADMIN'){

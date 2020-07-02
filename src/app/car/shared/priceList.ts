@@ -4,4 +4,6 @@ export interface PriceList {
     extraKilometrage: number;
     cdw: number;
     discount: number;
+    discountDays: number,
+    userUsername: string
 }
