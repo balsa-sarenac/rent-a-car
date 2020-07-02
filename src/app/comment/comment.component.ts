@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CommentComponent implements OnInit {
 
-  comments: IComment[];
+  comments: IComment[] = [];
 
   constructor(private commentService: CommentService, private _toastr: ToastrService) { }
 

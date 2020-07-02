@@ -153,7 +153,8 @@ export class PastRequestsComponent implements OnInit {
       id: null,
       kilometrage: this.kilometrage,
       comment: this.textCommentReport,
-      ad_id: this.request.adId
+      ad_id: this.request.adId,
+      user_id: this.request.userId
     };
     this.requestService.createReport(newReport).subscribe(data => {
       this.report = data;
