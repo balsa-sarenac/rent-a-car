@@ -1,0 +1,88 @@
+<div class="d-flex p-2 justify-content-center">
+    <div class="d-flex flex-column col-sm-4">
+        <div>
+            <h3 class="display-4" style="text-align: center;">Profile</h3>
+        </div>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input
+          type="text"
+          [(ngModel)] = "user.firstName"
+          [disabled] = "mode == 'VIEW'"
+          id="firstName"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input
+          type="text"
+          [(ngModel)] = "user.lastName"
+          [disabled] = "mode == 'VIEW'"
+          id="lastName"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Username</label>
+        <input
+          type="text"
+          [(ngModel)] = "user.username"
+          id="username"
+          disabled
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          type="text"
+          [(ngModel)] = "user.address"
+          [disabled] = "mode == 'VIEW'"
+          id="address"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group" *ngIf = "role == 'ROLE_AGENT'">
+        <label for="address">Company Name</label>
+        <input
+          type="text"
+          [(ngModel)] = "user.companyName"
+          [disabled] = "mode == 'VIEW'"
+          id="companyName"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group" *ngIf = "role == 'ROLE_AGENT'">
+        <label for="address">Business ID</label>
+        <input
+          type="text"
+          [(ngModel)] = "user.businessID"
+          [disabled] = "mode == 'VIEW'"
+          id="businessID"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          [(ngModel)] = "user.email"
+          [disabled] = "mode == 'VIEW'"
+          id="email"
+          class="form-control"
+          required
+        />
+      </div>
+      <button class="btn btn-outline-success" *ngIf = "mode == 'VIEW'" id="btnSearch" (click) = "edit()">Edit</button>
+      <button class="btn btn-outline-success" *ngIf = "mode == 'EDIT'" id="btnSearch" (click) = "save()">Save</button>
+      <button class="btn btn-outline-danger" style="margin-top: 10px;" *ngIf = "mode == 'EDIT'" id="btnSearch" (click) = "cancel()">Cancel</button>
+    </div>
+  </div>
+  
