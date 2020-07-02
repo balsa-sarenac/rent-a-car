@@ -10,5 +10,7 @@ export interface User {
     businessID: string,
     email: string,
     roles: string[],
-    password: string
+    password: string,
+    numCanReq: number,
+    flagPaid: boolean
 }
