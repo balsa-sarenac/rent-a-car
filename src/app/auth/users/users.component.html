@@ -4,15 +4,19 @@
         <div
           *ngFor="let u of users"
           class="card border-primary mb-3"
-          style="max-width: 20rem; max-height: 18rem; float: left; margin: 10px"
+          style="max-width: 20rem; max-height: 25rem; float: left; margin: 10px"
         >
           <div class="card-body">
             <h4 class="card-title">{{u.firstName}} {{u.lastName}}</h4>
             <p class="card-text">Username: {{u.username}}</p>
             <p class="card-text">Address: {{u.address}}</p>
             <p class="card-text">Email: {{u.email}}</p>
+            <p class="card-text">Number of cancelled request: {{u.numCanReq}}</p>
+            <button type="button" style="margin-top: 7px; margin-bottom: 7px; width: 100%;" class="btn btn-danger" *ngIf = "checkPrivilege(u.roles)" [disabled] = "u.flagPaid == true" (click) = "disableRent(u.id)" >Disable for renting</button>
+            <button type="button" style="margin-top: 7px; margin-bottom: 7px; width: 100%;" *ngIf = "!checkPrivilege(u.roles)" [disabled] = "u.flagPaid == true" class="btn btn-success" (click) = "enableRent(u.id)" >Enable for renting</button> 
             <button type="button" class="btn btn-danger" *ngIf="u.enabled == true" (click)="disable(u.id)">Disable</button> 
             <button type="button" class="btn btn-success" *ngIf="u.enabled == false" (click)="enable(u.id)">Enable</button>
+            <button type="button" style="margin-left: 10px; float: right;" class="btn btn-danger" (click) = "delete(u.id)" >Delete</button> 
           </div>
         </div>
       </div>
