@@ -82,7 +82,8 @@ export class CarService {
   }
 
   getStatistics() {
-    return this.http.get<any>(environment.api + "/car/statistics/1");
+    let id = localStorage.getItem("Id");
+    return this.http.get<any>(environment.api + "/car/statistics/" + id);
   }
 
 }

@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("Refresh-token", data.refreshToken);
         localStorage.setItem("Username", data.username);
         localStorage.setItem("User-role", data.role);
+        localStorage.setItem("Id", data.id);
         this.loginForm.reset();
         
         if(data.role == 'ROLE_ADMIN'){
