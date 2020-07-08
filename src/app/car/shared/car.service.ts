@@ -69,6 +69,7 @@ export class CarService {
     };
     console.log(car);
     let adDTO: Ad = {
+      id: -1,
       carDTO: car,
       cdwAvailable: userData.cdw,
       allowedKilometrage: userData.allowedKilometrage,
