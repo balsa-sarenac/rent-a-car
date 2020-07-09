@@ -34,6 +34,7 @@ import { CommentAndGradeComponent } from './comment-and-grade/comment-and-grade.
 import { PriceListComponent } from './price-list/price-list.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { BillComponent } from './bill/bill.component';
+import { CarsComponent } from './car/cars/cars.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { BillComponent } from './bill/bill.component';
     PriceListComponent,
     ProfileComponent,
     BillComponent,
+    CarsComponent
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
             ToastrModule.forRoot({
