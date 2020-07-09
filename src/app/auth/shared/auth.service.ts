@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/car/shared/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -55,14 +56,28 @@ export class AuthService {
   }
 
   editUser(user: User) {
-    return this.http.patch('http://localhost:8080', {id: user.id,
-                                                     companyName: user.companyName,
-                                                     businessID: user.businessID,
-                                                     email: user.email,
-                                                     firstName: user.firstName,
-                                                     lastName: user.lastName,
-                                                     address: user.address });
+    return this.http.patch('http://localhost:8080', {
+      id: user.id,
+      companyName: user.companyName,
+      businessID: user.businessID,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      address: user.address
+    });
     //return this.http.delete<any>(environment.api + '/security/', {});
+  }
+
+  getRegistrationRequests() {
+    return this.http.get(environment.api + '/registration-requests');
+  }
+
+  approveRequest(id: number) {
+    return this.http.post(environment.api + '/approve/' + id, {});
+  }
+
+  refuseRequest(id: number) {
+    return this.http.post(environment.api + '/refuse/' + id, {});
   }
 
 }

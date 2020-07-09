@@ -10,13 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 export class HomepageUsersComponent implements OnInit {
   role: string = '';
   constructor(private router: Router,
-              private toastr: ToastrService) { }
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.role = localStorage.getItem("User-role");
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem("User-token");
     localStorage.removeItem("Expires-in");
     localStorage.removeItem("Username");
@@ -24,6 +24,10 @@ export class HomepageUsersComponent implements OnInit {
     localStorage.removeItem("Refresh-token");
     this.router.navigate(['unregistredHomepage']);
     this.toastr.success('Successfully logged out', 'Logout');
+  }
+
+  cart() {
+    this.router.navigate(['usersHomepage/cart']);
   }
 
 }
