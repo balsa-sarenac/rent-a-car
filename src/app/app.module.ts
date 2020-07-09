@@ -35,6 +35,7 @@ import { PriceListComponent } from './price-list/price-list.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { BillComponent } from './bill/bill.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { RegistrationRequestComponent } from './auth/registration-request/registration-request.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     ProfileComponent,
     BillComponent,
     ShoppingCartComponent,
+    RegistrationRequestComponent,
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
             ToastrModule.forRoot({
