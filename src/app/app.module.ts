@@ -35,6 +35,7 @@ import { PriceListComponent } from './price-list/price-list.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { BillComponent } from './bill/bill.component';
 import { CarsComponent } from './car/cars/cars.component';
+import { EditCarComponent } from './car/edit-car/edit-car.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { CarsComponent } from './car/cars/cars.component';
     PriceListComponent,
     ProfileComponent,
     BillComponent,
-    CarsComponent
+    CarsComponent,
+    EditCarComponent
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
             ToastrModule.forRoot({
