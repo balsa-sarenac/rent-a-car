@@ -102,7 +102,8 @@ export class PastRequestsComponent implements OnInit {
         approved: false,
         adId: this.request.adId,
         carId: null,
-        userUsername: localStorage.getItem('Username')
+        userUsername: localStorage.getItem('Username'),
+        role: localStorage.getItem('User-role')
       };
       this.commentService.createComment(comment).subscribe(
         data=>{

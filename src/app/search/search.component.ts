@@ -129,6 +129,7 @@ export class SearchComponent implements OnInit {
     this.search.gearbox = {id: null, type: ''};
     this.search.model = {id: null, name: ''};
     this.search.mark = {id: null, name: '', models: null};
+    this.searchAds(0);
   }
   
   searchAds(page: number){
