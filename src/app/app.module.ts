@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
- 
+
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +23,6 @@ import { AuthService } from './auth/shared/auth.service';
 import { ChatService } from './chat/shared/chat.service';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { CommentComponent } from './comment/comment.component';
-import { PastRequestsComponent } from './requests/past-requests/past-requests.component';
 import { StatisticsComponent } from './car/statistics/statistics.component';
 import { HomepageAdminComponent } from './homepage/homepage-admin/homepage-admin.component';
 import { HomepageUsersComponent } from './homepage/homepage-users/homepage-users.component';
@@ -36,6 +35,7 @@ import { ProfileComponent } from './auth/profile/profile.component';
 import { BillComponent } from './bill/bill.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { RegistrationRequestComponent } from './auth/registration-request/registration-request.component';
+import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,6 @@ import { RegistrationRequestComponent } from './auth/registration-request/regist
     CarComponent,
     OccupationComponent,
     CommentComponent,
-    PastRequestsComponent,
     StatisticsComponent,
     HomepageAdminComponent,
     HomepageUsersComponent,
@@ -61,15 +60,16 @@ import { RegistrationRequestComponent } from './auth/registration-request/regist
     BillComponent,
     ShoppingCartComponent,
     RegistrationRequestComponent,
+    ReceivedRequestsComponent,
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
-            ToastrModule.forRoot({
-              timeOut: 3000,
-              preventDuplicates: true,
-              resetTimeoutOnDuplicate: true,
-              progressBar: true,
-              enableHtml: true
-            })],
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      preventDuplicates: true,
+      resetTimeoutOnDuplicate: true,
+      progressBar: true,
+      enableHtml: true
+    })],
   providers: [CarService, RequestService, AuthService, ChatService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent],

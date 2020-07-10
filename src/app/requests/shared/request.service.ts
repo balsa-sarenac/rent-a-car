@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IRequest } from './irequest.request';
 import { environment } from 'src/environments/environment';
 import { IReport } from './ireport.report';
+import { IAllRequests } from './irequests.all';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,11 @@ export class RequestService {
 
   getRequests() {
     //return this.http.get<IRequest[]>("http://localhost:8084/1");
-    return this.http.get<IRequest[]>(environment.api + "/request/2");
+    return this.http.get<IAllRequests>(environment.api + "/request");
   }
 
-  getActive() {
-    return this.http.get<IRequest[]>(environment.api + "/request/active/1")
-  }
-
-  getPast() {
-    return this.http.get<IRequest[]>(environment.api + "/request/past/1")
+  getReceived() {
+    return this.http.get<IAllRequests>(environment.api + "/request/received")
   }
 
   acceptRequest(reqId) {

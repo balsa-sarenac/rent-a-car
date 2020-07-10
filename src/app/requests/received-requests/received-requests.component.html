@@ -58,7 +58,8 @@
                      <th scope="col">Return date</th>
                      <th scope="col">Status</th>
                      <th scope="col">Bundle id</th>
-                     <th scope="col">Cancel</th>
+                     <th scope="col">Accept</th>
+                     <th scope="col">Refuse</th>
                      <th scope="col">View ad</th>
                   </tr>
                </thead>
@@ -71,8 +72,14 @@
                      <td>{{ req.status }}</td>
                      <td>{{ req.bundleId == -1 ? "" : req.bundleId }}</td>
                      <td>
-                        <button class="btn btn-dark" (click)="cancel(req)">
-                           Cancel
+                        <button class="btn btn-success" (click)="accept(req)">
+                           Accep
+                        </button>
+                     </td>
+
+                     <td>
+                        <button class="btn btn-danger" (click)="refuse(req)">
+                           Refuse
                         </button>
                      </td>
                      <td>
@@ -135,7 +142,7 @@
                      <th scope="col">Return date</th>
                      <th scope="col">Status</th>
                      <th scope="col">Bundle id</th>
-                     <th scope="col">Comment & grade</th>
+                     <th scope="col">Report</th>
                      <th scope="col">View ad</th>
                   </tr>
                </thead>
@@ -150,7 +157,7 @@
                      <td>
                         <button
                            class="btn btn-dark"
-                           (click)="open(mymodal, req)"
+                           (click)="openReport(mymodal_report, req)"
                         >
                            Report
                         </button>
@@ -166,9 +173,9 @@
          </div>
       </div>
    </div>
-   <ng-template #mymodal let-modal>
+   <ng-template #mymodal_report let-modal>
       <div class="modal-header">
-         <h4 class="modal-title" id="modal-basic-title">Comment and grade</h4>
+         <h4 class="modal-title" id="modal-basic-title">Report</h4>
          <button
             type="button"
             class="close"
@@ -181,39 +188,23 @@
       <div class="modal-body">
          <label> Comment </label><br />
          <textarea
-            *ngIf="checkCommentFlag == false"
             type="text"
             class="form-control"
             id="firstName"
             placeholder="Comment"
             value=""
-            [(ngModel)]="textComment"
-         ></textarea>
-         <span *ngIf="checkCommentFlag == true"
-            >You have already commented this ad</span
-         >
-         <br />
-         <label> Rating </label><br />
-         <ngb-rating
-            *ngIf="checkGradeFlag == false"
-            [(rate)]="currentRate"
-            [max]="5"
-         >
-            <ng-template let-fill="fill" let-index="index">
-               <span
-                  class="star"
-                  [class.filled]="fill === 100"
-                  [class.bad]="index < 0"
-                  >&#9733;</span
-               >
-            </ng-template>
-         </ngb-rating>
-         <span *ngIf="checkGradeFlag == true"
-            >You have already graded this ad</span
-         >
+            [(ngModel)]="textCommentReport"
+         ></textarea
+         ><br />
+         <label> Enter new kilometers </label><br />
+         <input type="number" [(ngModel)]="kilometrage" />
       </div>
       <div class="modal-footer">
-         <button type="button" class="btn btn-outline-dark" (click)="send()">
+         <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="sendReport()"
+         >
             Send
          </button>
       </div>
