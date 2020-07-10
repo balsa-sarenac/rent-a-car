@@ -22,6 +22,7 @@ import { PriceListComponent } from './price-list/price-list.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { BillComponent } from './bill/bill.component';
 import { CarsComponent } from './car/cars/cars.component';
+import { EditCarComponent } from './car/edit-car/edit-car.component';
 
 
 const routes: Routes = [
@@ -50,7 +51,8 @@ const routes: Routes = [
       { path: 'statistics', component: StatisticsComponent },
       { path: 'commentsAndGrades', component: CommentAndGradeComponent },
       { path: 'occupation', component: OccupationComponent },
-      { path: 'cars', component: CarsComponent }
+      { path: 'cars', component: CarsComponent },
+      { path: 'car/:id', component: EditCarComponent }
     ]
   },
   { path: 'adminHomepage', component: HomepageAdminComponent,
