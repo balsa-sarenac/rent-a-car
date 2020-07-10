@@ -34,6 +34,8 @@ import { CommentAndGradeComponent } from './comment-and-grade/comment-and-grade.
 import { PriceListComponent } from './price-list/price-list.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { BillComponent } from './bill/bill.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { RegistrationRequestComponent } from './auth/registration-request/registration-request.component';
 import { CarsComponent } from './car/cars/cars.component';
 import { EditCarComponent } from './car/edit-car/edit-car.component';
 
@@ -60,7 +62,9 @@ import { EditCarComponent } from './car/edit-car/edit-car.component';
     ProfileComponent,
     BillComponent,
     CarsComponent,
-    EditCarComponent
+    EditCarComponent,
+    ShoppingCartComponent,
+    RegistrationRequestComponent,
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
             ToastrModule.forRoot({
