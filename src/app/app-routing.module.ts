@@ -45,7 +45,7 @@ const routes: Routes = [
       { path: 'past-requests', component: PastRequestsComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'bill', component: BillComponent },
-      { path: 'car/:id', component: CarComponent },
+      { path: 'ad/:id', component: CarComponent },
       { path: 'new-car', component: NewCarComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'commentsAndGrades', component: CommentAndGradeComponent },

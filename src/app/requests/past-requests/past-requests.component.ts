@@ -177,7 +177,7 @@ export class PastRequestsComponent implements OnInit {
   }
 
   openAd(req: IRequest) {
-    this.router.navigate(['car', req.adId],{relativeTo: this.route.parent});
+    this.router.navigate(['ad', req.adId],{relativeTo: this.route.parent});
   }
 
   onSubmit(mess: { text: String; }) {
