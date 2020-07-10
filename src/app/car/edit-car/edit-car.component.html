@@ -1,1 +1,70 @@
-<p>edit-car works!</p>
+<div class="d-flex justify-content-center">
+    <form
+        (ngSubmit)="onSubmit()"
+    >
+        <div class="d-flex flex-column">
+            <h1> {{car.mark.name}}  {{car.model.name}} </h1>
+            <h6> Kilometrage: {{car.kilometrage}} km</h6>
+            <h6> Average grade: {{average_grade}} </h6>
+
+            <br>
+            <label>Fuel</label>
+            <select
+                class="form-control"
+                id="fuel"
+            >
+                <option *ngFor="let fuel of fuels" [value]="car.fuel.type"> {{fuel.type}} </option>
+            </select>
+
+            <br>
+            <label>Class</label>
+            <select
+                class="form-control"
+                id="carClass"
+                
+            >
+                <option *ngFor="let class of carClasses"> {{class.name}} </option>
+            </select>
+
+            <br>
+            <label>Gearbox</label>
+            <select
+                class="form-control"
+                id="gearbox"
+                
+            >
+                <option *ngFor="let gearbox of gearboxes"> {{gearbox.type}} </option>
+            </select>
+
+            <br>
+            <label>Number of child seats</label>
+            <input
+                class="form-control"
+                type="number"
+                id="numberOfChildSeats"
+                
+            />
+
+            <br>
+            <div class="col-sm">
+                <input
+                    class="form-check-input"
+                    value="false"
+                    type="checkbox"
+                    id="hasAndroid"
+                />
+                <label
+                    class="form-check-label"
+                >It has android</label>
+            </div>
+
+            <br>
+            <button  
+                class="btn btn-primary"
+                type="submit"
+            >
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
