@@ -1,0 +1,53 @@
+<div class="container">
+   <div class="col-8 justify-content-center">
+      <div class="col">
+         <h1 class="h1">Registration reqeusts</h1>
+      </div>
+      <div class="col">
+         <div class="col" *ngIf="users == undefined">
+            <h3 class="h3">
+               There are no active registration requests
+            </h3>
+         </div>
+         <table class="table table-hover">
+            <thead *ngIf="users != undefined">
+               <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First name</th>
+                  <th scope="col">Last name</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Approve</th>
+
+                  <th scope="col">Refuse</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let user of users; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ user.firstName }}</td>
+                  <td>{{ user.lastName }}</td>
+                  <td>{{ user.username }}</td>
+                  <td>
+                     <button
+                        type="button"
+                        class="btn btn-success btn-sm"
+                        (click)="approve(user)"
+                     >
+                        Approve
+                     </button>
+                  </td>
+                  <td>
+                     <button
+                        type="button"
+                        class="btn btn-danger btn-sm"
+                        (click)="refuse(user)"
+                     >
+                        Refuse
+                     </button>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>

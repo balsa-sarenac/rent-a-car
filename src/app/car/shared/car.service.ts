@@ -69,6 +69,7 @@ export class CarService {
     };
     console.log(car);
     let adDTO: Ad = {
+      id: -1,
       carDTO: car,
       cdwAvailable: userData.cdw,
       allowedKilometrage: userData.allowedKilometrage,
@@ -82,7 +83,8 @@ export class CarService {
   }
 
   getStatistics() {
-    return this.http.get<any>(environment.api + "/car/statistics/1");
+    let id = localStorage.getItem("Id");
+    return this.http.get<any>(environment.api + "/car/statistics/" + id);
   }
 
 }

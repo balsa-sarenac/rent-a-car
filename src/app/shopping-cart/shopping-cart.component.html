@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-center">
+   <div class="d-flex flex-column">
+      <h1 class="h1">Shopping cart</h1>
+      <h2 class="h2" *ngIf="requests == undefined">
+         Your shopping cart is empty
+      </h2>
+      <div class="d-flex flex-column">
+         <div
+            class="card m-2"
+            style="width: 38rem;"
+            *ngFor="let userId of keys; let i = index; trackBy: customTB"
+         >
+            <div class="card-header">
+               <label> {{ userId }} user </label>
+            </div>
+            <ul
+               class="list-group list-group-flush"
+               *ngFor="
+                  let req of map.get(userId);
+                  let i = index;
+                  trackBy: customTB
+               "
+            >
+               <li class="list-group-item">
+                  Ad: {{ req.adId }}, From date: {{ req.pickUpDate }}, To date:
+                  {{ req.returnDate }}, Price per day: {{ req.status }}
+                  <button
+                     type="button"
+                     class="btn btn-danger btn-sm align-self-end"
+                     (click)="removeRequest(userId, req)"
+                  >
+                     Remove
+                  </button>
+               </li>
+            </ul>
+            <div class="car-body">
+               <div *ngIf="bundles.indexOf(userId) == -1">
+                  <label class="m-2">Rent all as bundle?</label>
+                  <button
+                     type="button"
+                     class="btn btn-secondary btn-sm m-2"
+                     (click)="changeBundle(userId)"
+                  >
+                     Bundle
+                  </button>
+               </div>
+               <div *ngIf="bundles.indexOf(userId) != -1">
+                  <label class="m-2"
+                     >You are renting these cars as bundle</label
+                  >
+                  <button
+                     type="button"
+                     class="btn btn-secondary btn-sm m-2"
+                     (click)="changeBundle(userId)"
+                  >
+                     Unbundle
+                  </button>
+               </div>
+            </div>
+         </div>
+         <div>
+            <button
+               *ngIf="requests != undefined"
+               type="submit"
+               class="btn btn-primary m-2"
+               (click)="onSubmit()"
+            >
+               Checkout
+            </button>
+         </div>
+      </div>
+   </div>
+</div>

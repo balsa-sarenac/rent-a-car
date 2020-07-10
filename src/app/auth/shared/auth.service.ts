@@ -63,7 +63,27 @@ export class AuthService {
                                                      firstName: user.firstName,
                                                      lastName: user.lastName,
                                                      address: user.address });
-    //return this.http.delete<any>(environment.api + '/security/', {});
+    /*return this.http.patch('http://localhost:8080', {
+                                                      id: user.id,
+                                                      companyName: user.companyName,
+                                                      businessID: user.businessID,
+                                                      email: user.email,
+                                                      firstName: user.firstName,
+                                                      lastName: user.lastName,
+                                                      address: user.address
+                                                    });*/
+  }
+
+  getRegistrationRequests() {
+    return this.http.get(environment.api + '/registration-requests');
+  }
+
+  approveRequest(id: number) {
+    return this.http.post(environment.api + '/approve/' + id, {});
+  }
+
+  refuseRequest(id: number) {
+    return this.http.post(environment.api + '/refuse/' + id, {});
   }
 
 }

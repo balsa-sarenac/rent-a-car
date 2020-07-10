@@ -1,30 +1,71 @@
 <div class="d-flex justify-content-center">
    <div class="d-flex flex-column col-sm-7">
-      <div class="card-body" *ngIf="statistics.carWithHighestGrade != null">
-         <h5 class="card-title">Najbolje ocenjeni automobil</h5>
-         <p>{{ statistics.carWithHighestGrade.markName }}</p>
-         <p>{{ statistics.carWithHighestGrade.modelName }}</p>
-         <p>
-            prosečna ocena: {{ statistics.carWithHighestGrade.averageGrade }}
-         </p>
+      <div 
+         class="card border-primary mb-3" 
+         style="max-width: 20rem;"
+         *ngIf="statistics.carWithHighestGrade != null; else bestGradesNull"
+      >
+         <div class="card-header"><b>Car with best average grade</b></div>
+         <div class="card-body">
+            <p class="card-text">{{ statistics.carWithHighestGrade.markName }} {{ statistics.carWithHighestGrade.modelName }}</p>
+            <p class="card-text">Average grade: {{ statistics.carWithHighestGrade.averageGrade }}</p>
+         </div>
       </div>
-      <div class="card-body" *ngIf="statistics.carWithMostComments != null">
-         <h5 class="card-title">Automobil sa najviše komentara</h5>
-         <p>{{ statistics.carWithMostComments.markName }}</p>
-         <p>{{ statistics.carWithMostComments.modelName }}</p>
-         <p>
-            Broj komentara:
-            {{ statistics.carWithMostComments.numberOfComments }}
-         </p>
+      <div 
+         class="card border-primary mb-3" 
+         style="max-width: 20rem;"
+         *ngIf="statistics.carWithMostComments != null; else mostCommentsNull"
+      >
+         <div class="card-header"><b>Car with most comments</b></div>
+         <div class="card-body">
+            <p class="card-text">{{ statistics.carWithMostComments.markName }} {{ statistics.carWithMostComments.modelName }}</p>
+            <p class="card-text">Number of comments: {{ statistics.carWithMostComments.numberOfComments }}</p>
+         </div>
       </div>
-      <div class="card-body" *ngIf="statistics.carWithMostKilometers != null">
-         <h5 class="card-title">Automobil sa najviše pređenih kilometara</h5>
-         <p>{{ statistics.carWithMostKilometers.markName }}</p>
-         <p>{{ statistics.carWithMostKilometers.modelName }}</p>
-         <p>
-            Pređeni kilometri:
-            {{ statistics.carWithMostKilometers.kilometrage }}
-         </p>
+      <div 
+         class="card border-primary mb-3" 
+         style="max-width: 20rem;"
+         *ngIf="statistics.carWithMostComments != null; else mostKilometersNull"
+      >
+         <div class="card-header"><b>Car with most kilometers</b></div>
+         <div class="card-body">
+            <p class="card-text">{{ statistics.carWithMostKilometers.markName }} {{ statistics.carWithMostKilometers.modelName }}</p>
+            <p class="card-text">Kilometrage: {{ statistics.carWithMostKilometers.kilometrage }} km</p>
+         </div>
       </div>
    </div>
 </div>
+
+<ng-template #bestGradesNull>
+   <div 
+      class="card border-primary mb-3" 
+      style="max-width: 20rem;"
+   >
+      <div class="card-header"><b>Car with best average grade</b></div>
+      <div class="card-body">
+         <p class="card-text">There is no such car</p>
+      </div>
+   </div>
+</ng-template>
+<ng-template #mostCommentsNull>
+   <div 
+      class="card border-primary mb-3" 
+      style="max-width: 20rem;"
+   >
+      <div class="card-header"><b>Car with most comments</b></div>
+      <div class="card-body">
+         <p class="card-text">There is no such car</p>
+      </div>
+   </div>
+</ng-template>
+<ng-template #mostKilometersNull>
+   <div 
+      class="card border-primary mb-3" 
+      style="max-width: 20rem;"
+   >
+      <div class="card-header"><b>Car with most kilometers</b></div>
+      <div class="card-body">
+         <p class="card-text">There is no such car</p>
+      </div>
+   </div>
+</ng-template>

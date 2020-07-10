@@ -12,4 +12,5 @@ export interface AdInfo {
     priceList: PriceList;
     id: number;
     pages: number;
+    userId: number;
 }

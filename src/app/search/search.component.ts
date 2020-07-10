@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SearchService } from './shared/search.service';
 import { Ad } from '../car/shared/ad';
 import { AdInfo } from '../car/shared/adInfo';
+import { IRequest } from "../requests/shared/irequest.request";
 import { Router, ActivatedRoute } from '@angular/router';
 import { IComment } from '../comment/shared/comment';
 import { CommentService } from '../comment/shared/comment.service';
@@ -35,48 +36,48 @@ export class SearchComponent implements OnInit {
   sortSelected: string = 'Sort by';
   ad: AdInfo;
   comments: IComment[];
-  
+
   constructor(private carService: CarService,
-              private route: ActivatedRoute,
-              private _toastr: ToastrService,
-              private searchService: SearchService,
-              private router: Router,
-              private modalService: NgbModal,
-              private commentService: CommentService) {
+    private route: ActivatedRoute,
+    private _toastr: ToastrService,
+    private searchService: SearchService,
+    private router: Router,
+    private modalService: NgbModal,
+    private commentService: CommentService) {
     this.search = {
-    cdw :false,
-    kilometrageDrive : 0,
-    kilometrageFrom : 0,
-    kilometrageTo : 0,
-    numberOfChildSeats : 0,
-    priceFrom : 0,
-    priceTo : 0,
-    carClass : {
-      id: null,
-      name: ''
-    },
-    fuel : {
-      id: null,
-      type: ''
-    },
-    gearbox : {
-      id: null,
-      type: ''
-    },
-    model : {
-      id: null,
-      name: '',
-    },
-    mark : {
-      id: null,
-      name: '',
-      models: null
-    },
-    pickUpPlace : '',
-    fromDate : null,
-    toDate : null
+      cdw: false,
+      kilometrageDrive: 0,
+      kilometrageFrom: 0,
+      kilometrageTo: 0,
+      numberOfChildSeats: 0,
+      priceFrom: 0,
+      priceTo: 0,
+      carClass: {
+        id: null,
+        name: ''
+      },
+      fuel: {
+        id: null,
+        type: ''
+      },
+      gearbox: {
+        id: null,
+        type: ''
+      },
+      model: {
+        id: null,
+        name: '',
+      },
+      mark: {
+        id: null,
+        name: '',
+        models: null
+      },
+      pickUpPlace: '',
+      fromDate: null,
+      toDate: null
     };
-   }
+  }
 
   ngOnInit(): void {
     this.getData();
@@ -98,7 +99,7 @@ export class SearchComponent implements OnInit {
       .subscribe((data: string[]) => this.cities = data);
   }
 
-  clear(){
+  clear() {
     this.search.cdw = false;
     this.search.kilometrageDrive = 0;
     this.search.kilometrageFrom = 0;
@@ -106,17 +107,17 @@ export class SearchComponent implements OnInit {
     this.search.numberOfChildSeats = 0;
     this.search.priceFrom = 0;
     this.search.priceTo = 0;
-    this.search.carClass = {id: null, name: ''};
-    this.search.fuel = {id: null, type: ''};
-    this.search.gearbox = {id: null, type: ''};
-    this.search.model = {id: null, name: ''};
-    this.search.mark = {id: null, name: '', models: null};
+    this.search.carClass = { id: null, name: '' };
+    this.search.fuel = { id: null, type: '' };
+    this.search.gearbox = { id: null, type: '' };
+    this.search.model = { id: null, name: '' };
+    this.search.mark = { id: null, name: '', models: null };
     this.search.pickUpPlace = '';
     this.search.fromDate = null;
     this.search.toDate = null;
   }
 
-  clearAdditional(){
+  clearAdditional() {
     this.search.cdw = false;
     this.search.kilometrageDrive = 0;
     this.search.kilometrageFrom = 0;
@@ -131,37 +132,37 @@ export class SearchComponent implements OnInit {
     this.search.mark = {id: null, name: '', models: null};
     this.searchAds(0);
   }
-  
-  searchAds(page: number){
-      if(this.search.pickUpPlace == '' || this.search.fromDate == null || this.search.toDate == null){
-          this._toastr.info('Please fill place, date from and date to','Search');
-          return;
-      }
 
-      this.searchService.searchAds(this.search,page,this.sortSelected).subscribe(
-        data => {
-            this.ads = data;
-            this.pages = [];
-            for (let i = 1; i <= this.ads[0].pages; i++) {
-              this.pages[i - 1] = i;
-            }
-            if(this.ads.length > 0){
-              this._toastr.success('Search succesfully eneded','Search');
-            }else{
-              this._toastr.info('No results found','Search');
-            }
-        },
-        error =>{
-          if(error.status == 400){
-            this._toastr.info('Dates are not valid','Search');
-          }else{
-            this._toastr.error('Error during search', 'Search');
-          }
+  searchAds(page: number) {
+    if (this.search.pickUpPlace == '' || this.search.fromDate == null || this.search.toDate == null) {
+      this._toastr.info('Please fill place, date from and date to', 'Search');
+      return;
+    }
+
+    this.searchService.searchAds(this.search, page, this.sortSelected).subscribe(
+      data => {
+        this.ads = data;
+        this.pages = [];
+        for (let i = 1; i <= this.ads[0].pages; i++) {
+          this.pages[i - 1] = i;
         }
-      );
+        if (this.ads.length > 0) {
+          this._toastr.success('Search succesfully eneded', 'Search');
+        } else {
+          this._toastr.info('No results found', 'Search');
+        }
+      },
+      error => {
+        if (error.status == 400) {
+          this._toastr.info('Dates are not valid', 'Search');
+        } else {
+          this._toastr.error('Error during search', 'Search');
+        }
+      }
+    );
   }
 
-  view(content, ad: AdInfo){
+  view(content, ad: AdInfo) {
     this.carService.getOneAd(ad.id).subscribe(
       data => {
         this.ad = data;
@@ -176,8 +177,27 @@ export class SearchComponent implements OnInit {
     this.viewModal = this.modalService.open(content, { size: 'lg', scrollable: true });
   }
 
-  sort(){
+  sort() {
     this.searchAds(0);
+  }
+
+  addToCart(ad: AdInfo) {
+    let reqs: IRequest[] = JSON.parse(localStorage.getItem("Cart"));
+    let req: IRequest = {
+      id: -1,
+      pickUpPlace: this.search.pickUpPlace,
+      pickUpDate: this.search.fromDate,
+      returnDate: this.search.toDate,
+      status: ad.priceList.perDay.toString(),
+      adId: ad.id,
+      bundleId: -1,
+      userId: ad.userId
+    }
+    if (reqs === undefined || reqs === null) {
+      reqs = [];
+    }
+    reqs.push(req);
+    localStorage.setItem("Cart", JSON.stringify(reqs));
   }
 
 }
