@@ -76,6 +76,7 @@ export class CommentAndGradeComponent implements OnInit {
     }
     this.comment = {
       adId: this.selectedComment.adId,
+      role: localStorage.getItem("User-role"),
       approved: false,
       text: this.commentText,
       userUsername: this.username,

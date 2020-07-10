@@ -4,6 +4,7 @@ export interface IComment {
     approved: boolean;
     userUsername: string;
     carId: number;
+    role: string;
     adId: number;
  }
  

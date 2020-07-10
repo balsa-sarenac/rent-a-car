@@ -138,6 +138,7 @@ export class RequestsComponent implements OnInit {
         approved: false,
         adId: this.request.adId,
         carId: null,
+        role: this.userRole,
         userUsername: localStorage.getItem('Username')
       };
       this.commentService.createComment(comment).subscribe(

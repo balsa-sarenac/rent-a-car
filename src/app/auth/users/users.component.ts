@@ -67,7 +67,7 @@ export class UsersComponent implements OnInit {
   }
 
   checkPrivilege(roles: string[]){
-      if(roles.indexOf('PRIVILEGE_RENT') > -1)
+      if(roles.indexOf('POST_ADS') > -1)
           return true;
       else
           return false;

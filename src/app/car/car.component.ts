@@ -48,6 +48,7 @@ export class CarComponent implements OnInit {
     this.comment = {
       adId: this.ad.id,
       approved: false,
+      role: localStorage.getItem("User-role"),
       text: this.commentText,
       userUsername: 'agent',
       id: null,
