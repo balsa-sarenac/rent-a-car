@@ -10,7 +10,6 @@ import { NewCarComponent } from "./car/new-car/new-car.component";
 import { CarComponent } from "./car/car.component";
 import { CommentComponent } from './comment/comment.component';
 import { OccupationComponent } from './car/occupation/occupation.component';
-import { PastRequestsComponent } from './requests/past-requests/past-requests.component';
 import { StatisticsComponent } from './car/statistics/statistics.component';
 import { HomepageUsersComponent } from './homepage/homepage-users/homepage-users.component';
 import { HomepageAdminComponent } from './homepage/homepage-admin/homepage-admin.component';
@@ -25,6 +24,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { RegistrationRequestComponent } from './auth/registration-request/registration-request.component';
 import { CarsComponent } from './car/cars/cars.component';
 import { EditCarComponent } from './car/edit-car/edit-car.component';
+import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
+
 
 
 const routes: Routes = [
@@ -47,7 +48,7 @@ const routes: Routes = [
       { path: 'search', component: SearchComponent },
       { path: 'requests', component: RequestsComponent },
       { path: 'priceList', component: PriceListComponent },
-      { path: 'past-requests', component: PastRequestsComponent },
+      { path: 'received-requests', component: ReceivedRequestsComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'bill', component: BillComponent },
       { path: 'ad/:id', component: CarComponent },

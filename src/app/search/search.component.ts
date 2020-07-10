@@ -125,11 +125,12 @@ export class SearchComponent implements OnInit {
     this.search.numberOfChildSeats = 0;
     this.search.priceFrom = 0;
     this.search.priceTo = 0;
-    this.search.carClass = { id: null, name: '' };
-    this.search.fuel = { id: null, type: '' };
-    this.search.gearbox = { id: null, type: '' };
-    this.search.model = { id: null, name: '' };
-    this.search.mark = { id: null, name: '', models: null };
+    this.search.carClass = {id: null, name: ''};
+    this.search.fuel = {id: null, type: ''};
+    this.search.gearbox = {id: null, type: ''};
+    this.search.model = {id: null, name: ''};
+    this.search.mark = {id: null, name: '', models: null};
+    this.searchAds(0);
   }
 
   searchAds(page: number) {

@@ -15,43 +15,43 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   getModels() {
-    //return this.http.get<Model[]>(environment.api + "/model/all");
-    return this.http.get<any>("http://localhost:8080/model");
+    return this.http.get<Model[]>(environment.api + "/search/model");
+    //return this.http.get<any>("http://localhost:8080/model");
   }
 
   getCities() {
-    //return this.http.get<Model[]>(environment.api + "/ad/city");
-    return this.http.get<any>("http://localhost:8080/ad/city");
+    return this.http.get<any>(environment.api + "/search/ad/city");
+    //return this.http.get<any>("http://localhost:8080/ad/city");
   }
 
   getMarks() {
-    //return this.http.get<Mark[]>(environment.api + "/mark/all");
-    return this.http.get<any>("http://localhost:8080/mark");
+    return this.http.get<Mark[]>(environment.api + "/search/mark");
+    //return this.http.get<any>("http://localhost:8080/mark");
   }
 
   getGearboxes() {
-    //return this.http.get<Gearbox[]>(environment.api + "/gearbox/all");
-    return this.http.get<any>("http://localhost:8080/gearbox");
+    return this.http.get<Gearbox[]>(environment.api + "/search/gearbox");
+    //return this.http.get<any>("http://localhost:8080/gearbox");
   }
 
   getFuels() {
-    //return this.http.get<Fuel[]>(environment.api + "/fuel/all");
-    return this.http.get<any>("http://localhost:8080/fuel");
+    return this.http.get<Fuel[]>(environment.api + "/search/fuel");
+    //return this.http.get<any>("http://localhost:8080/fuel");
   }
 
   getCarClasses() {
-    //return this.http.get<CarClass[]>(environment.api + "/carclass/all");
-    return this.http.get<any>("http://localhost:8080/carclass");
+    return this.http.get<CarClass[]>(environment.api + "/search/carclass");
+    //return this.http.get<any>("http://localhost:8080/carclass");
   }
 
   getCarsByUser(username: string) {
-    //return this.http.get<any>(environment.api +"/car/car/user/" + username);
-    return this.http.get<any>("http://localhost:8080/car/user/" + username);
+    return this.http.get<any>(environment.api +"/car/car/user/" + username);
+    //return this.http.get<any>("http://localhost:8080/car/user/" + username);
   }
 
   getOneAd(id: number) {
-    //return this.http.get<any>(environment.api + "/car/ad/" + id);
-    return this.http.get<any>("http://localhost:8080/ad/" + id);
+    return this.http.get<any>(environment.api + "/search/ad/" + id);
+    //return this.http.get<any>("http://localhost:8080/ad/" + id);
   }
 
   postNewAd(userData) {
