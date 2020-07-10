@@ -87,4 +87,8 @@ export class CarService {
     return this.http.get<any>(environment.api + "/car/statistics/" + id);
   }
 
+  getCarById(id: number) {
+    return this.http.get<any>("http://localhost:8080/car/" + id);
+  }
+
 }
