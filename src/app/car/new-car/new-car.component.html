@@ -171,8 +171,14 @@
                formControlName="priceListId"
                id="pricelist"
             >
-               <option>1</option>
-               <option>2</option>
+               <option *ngFor="let price of priceLists" [value]="price.id">{{
+                  "Per day: " +
+                     price.perDay +
+                     ", cdw: " +
+                     price.cdw +
+                     ", extra: " +
+                     price.extraKilometrage
+               }}</option>
             </select>
          </div>
       </div>

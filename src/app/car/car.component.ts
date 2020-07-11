@@ -3,8 +3,8 @@ import { CarService } from './shared/car.service';
 import { CommentService } from '../comment/shared/comment.service';
 import { IComment } from '../comment/shared/comment';
 import { AdInfo } from './shared/adInfo';
-import { ActivatedRoute, Router} from '@angular/router';
-import {Location} from '@angular/common'
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-car',
@@ -34,6 +34,8 @@ export class CarComponent implements OnInit {
     this.carService.getOneAd(this.id).subscribe(
       data => {
         this.ad = data;
+        this.ad.fromDate = new Date(this.ad.fromDate);
+        this.ad.toDate = new Date(this.ad.toDate);
         this.commentService.getCommentsForCar(this.ad.car.id).subscribe(
           data => {
             this.comments = data
@@ -58,7 +60,7 @@ export class CarComponent implements OnInit {
     this.commentText = "";
   }
 
-  back(){
+  back() {
     this._location.back();
   }
 

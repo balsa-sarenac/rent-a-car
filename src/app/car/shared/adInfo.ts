@@ -13,4 +13,5 @@ export interface AdInfo {
     id: number;
     pages: number;
     userId: number;
+    images: string[];
 }
