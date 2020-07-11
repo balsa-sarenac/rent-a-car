@@ -25,6 +25,8 @@ import { RegistrationRequestComponent } from './auth/registration-request/regist
 import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
 import { MapComponent } from './map/map.component';
 import { CodebookComponent } from './car/codebook/codebook.component';
+import { CarsComponent } from './car/cars/cars.component';
+import { EditCarComponent } from './car/edit-car/edit-car.component';
 
 
 const routes: Routes = [
@@ -56,7 +58,9 @@ const routes: Routes = [
       { path: 'statistics', component: StatisticsComponent },
       { path: 'commentsAndGrades', component: CommentAndGradeComponent },
       { path: 'occupation', component: OccupationComponent },
-      { path: 'cart', component: ShoppingCartComponent }
+      { path: 'cart', component: ShoppingCartComponent },
+      { path: 'cars', component: CarsComponent },
+      { path: 'ad/:id', component: EditCarComponent }
     ]
   },
   {

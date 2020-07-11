@@ -23,6 +23,7 @@ export class HomepageUsersComponent implements OnInit {
     localStorage.removeItem("User-role");
     localStorage.removeItem("Refresh-token");
     localStorage.removeItem("Cart");
+    localStorage.removeItem("Id");
     this.router.navigate(['unregistredHomepage']);
     this.toastr.success('Successfully logged out', 'Logout');
   }
