@@ -17,7 +17,7 @@ export class StatisticsComponent implements OnInit {
       (data: IStatistics) => this.statistics = data,
       err => console.error('Error in getting statistics')
     );
-    alert(this.statistics.carWithHighestGrade.markName);
+    //alert(this.statistics.carWithHighestGrade.markName);
   }
 
 }
