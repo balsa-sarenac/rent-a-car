@@ -7,6 +7,7 @@ import { Gearbox } from 'src/app/car/shared/gearbox';
 import { Mark } from 'src/app/car/shared/mark';
 import { Model } from 'src/app/car/shared/model';
 import { MyImage } from '../shared/my-image';
+import { PriceList } from '../shared/priceList';
 
 @Component({
   selector: 'app-new-car',
@@ -23,6 +24,7 @@ export class NewCarComponent implements OnInit {
   imageFiles = [];
   imageURLs: MyImage[] = [];
   selectedMark: Mark;
+  priceLists: PriceList[];
 
   constructor(private formBuilder: FormBuilder, private carService: CarService) {
     this.newCarForm = this.formBuilder.group({
@@ -58,17 +60,18 @@ export class NewCarComponent implements OnInit {
   }
 
   getData() {
-    this.carService.getModels()
+    this.carService.getCarModels()
       .subscribe((data: Model[]) => this.models = data);
-    this.carService.getMarks()
+    this.carService.getCarMarks()
       .subscribe((data: Mark[]) => this.marks = data);
-    this.carService.getGearboxes()
+    this.carService.getCarGearboxes()
       .subscribe((data: Gearbox[]) => this.gearboxes = data);
-    this.carService.getFuels()
+    this.carService.getCarFuels()
       .subscribe((data: Fuel[]) => this.fuels = data);
-    this.carService.getCarClasses()
+    this.carService.getCarCarClasses()
       .subscribe((data: CarClass[]) => this.carClasses = data);
-
+    this.carService.getPriceLists()
+      .subscribe((data: PriceList[]) => this.priceLists = data);
     // pricelist
   }
 

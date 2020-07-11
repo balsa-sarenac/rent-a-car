@@ -56,13 +56,15 @@ export class AuthService {
   }
 
   editUser(user: User) {
-    return this.http.patch(environment.api + '/security/', {id: user.id,
-                                                     companyName: user.companyName,
-                                                     businessID: user.businessID,
-                                                     email: user.email,
-                                                     firstName: user.firstName,
-                                                     lastName: user.lastName,
-                                                     address: user.address });
+    return this.http.patch(environment.api + '/security/', {
+      id: user.id,
+      companyName: user.companyName,
+      businessID: user.businessID,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      address: user.address
+    });
     /*return this.http.patch('http://localhost:8080', {
                                                       id: user.id,
                                                       companyName: user.companyName,
@@ -75,15 +77,15 @@ export class AuthService {
   }
 
   getRegistrationRequests() {
-    return this.http.get(environment.api + '/registration-requests');
+    return this.http.get(environment.api + '/security/registration-requests');
   }
 
   approveRequest(id: number) {
-    return this.http.post(environment.api + '/approve/' + id, {});
+    return this.http.post(environment.api + '/security/approve/' + id, {});
   }
 
   refuseRequest(id: number) {
-    return this.http.post(environment.api + '/refuse/' + id, {});
+    return this.http.post(environment.api + '/security/refuse/' + id, {});
   }
 
 }

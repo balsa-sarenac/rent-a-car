@@ -8,6 +8,7 @@ import { Mark } from './mark';
 import { environment } from 'src/environments/environment';
 import { Ad } from './ad';
 import { Car } from './car';
+import { PriceList } from './priceList';
 
 
 @Injectable()
@@ -45,12 +46,13 @@ export class CarService {
   }
 
   getCarsByUser(username: string) {
-    return this.http.get<any>(environment.api +"/car/car/user/" + username);
+    return this.http.get<any>(environment.api + "/car/car/user/" + username);
     //return this.http.get<any>("http://localhost:8080/car/user/" + username);
   }
 
   getOneAd(id: number) {
-    return this.http.get<any>(environment.api + "/search/ad/" + id);
+    // return this.http.get<any>(environment.api + "/search/ad/" + id);
+    return this.http.get<any>(environment.api + "/car/ad/" + id);
     //return this.http.get<any>("http://localhost:8080/ad/" + id);
   }
 
@@ -79,7 +81,7 @@ export class CarService {
       priceListId: userData.priceListId
     }
     console.log(adDTO);
-    return this.http.post<Ad>(environment.api + "/ad", adDTO);
+    return this.http.post<Ad>(environment.api + "/car/ad", adDTO);
   }
 
   getStatistics() {
@@ -87,6 +89,39 @@ export class CarService {
     return this.http.get<any>(environment.api + "/car/statistics/" + id);
   }
 
+  getCarModels() {
+    return this.http.get<Model[]>(environment.api + "/car/model");
+    //return this.http.get<any>("http://localhost:8080/model");
+  }
+
+  getCarCities() {
+    return this.http.get<any>(environment.api + "/car/ad/city");
+    //return this.http.get<any>("http://localhost:8080/ad/city");
+  }
+
+  getCarMarks() {
+    return this.http.get<Mark[]>(environment.api + "/car/mark");
+    //return this.http.get<any>("http://localhost:8080/mark");
+  }
+
+  getCarGearboxes() {
+    return this.http.get<Gearbox[]>(environment.api + "/car/gearbox");
+    //return this.http.get<any>("http://localhost:8080/gearbox");
+  }
+
+  getCarFuels() {
+    return this.http.get<Fuel[]>(environment.api + "/car/fuel");
+    //return this.http.get<any>("http://localhost:8080/fuel");
+  }
+
+  getCarCarClasses() {
+    return this.http.get<CarClass[]>(environment.api + "/car/carclass");
+    //return this.http.get<any>("http://localhost:8080/carclass");
+  }
+
+  getPriceLists() {
+    return this.http.get<PriceList[]>(environment.api + "/car/priceList/" + localStorage.getItem("Username"));
+  }
   getCarById(id: number) {
     return this.http.get<any>("http://localhost:8080/car/" + id);
   }
