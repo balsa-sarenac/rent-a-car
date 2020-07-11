@@ -13,7 +13,7 @@ import { PricelistService } from './shared/pricelist.service';
 export class PriceListComponent implements OnInit {
   addModal: NgbModalRef;
   priceList: PriceList;
-  priceLists: PriceList[];
+  priceLists: PriceList[] = [];
   role: string='';
   username: string='';
   mode: string = 'ADD';

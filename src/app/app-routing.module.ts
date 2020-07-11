@@ -23,6 +23,7 @@ import { BillComponent } from './bill/bill.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { RegistrationRequestComponent } from './auth/registration-request/registration-request.component';
 import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
+import { MapComponent } from './map/map.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'search', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'car/:id', component: CarComponent },
+      { path: 'map', component: MapComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'search', component: SearchComponent }
     ]

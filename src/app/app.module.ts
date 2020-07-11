@@ -36,6 +36,13 @@ import { BillComponent } from './bill/bill.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { RegistrationRequestComponent } from './auth/registration-request/registration-request.component';
 import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
+import { MapComponent } from './map/map.component';
+import { AngularYandexMapsModule , IConfig} from 'angular8-yandex-maps';
+
+const mapConfig: IConfig = {
+  apikey: 'API_KEY',
+  lang: 'en_US',
+};
 
 @NgModule({
   declarations: [
@@ -61,6 +68,7 @@ import { ReceivedRequestsComponent } from './requests/received-requests/received
     ShoppingCartComponent,
     RegistrationRequestComponent,
     ReceivedRequestsComponent,
+    MapComponent,
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
     ToastrModule.forRoot({
@@ -69,7 +77,8 @@ import { ReceivedRequestsComponent } from './requests/received-requests/received
       resetTimeoutOnDuplicate: true,
       progressBar: true,
       enableHtml: true
-    })],
+    }),
+    AngularYandexMapsModule.forRoot(mapConfig)],
   providers: [CarService, RequestService, AuthService, ChatService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent],
