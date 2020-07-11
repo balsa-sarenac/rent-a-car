@@ -1,0 +1,572 @@
+<div class="container">
+   <div class="col justify-content-center">
+      <ul class="nav nav-tabs">
+         <li class="nav-item active">
+            <a class="nav-link active" data-toggle="pill" href="#mark">Mark</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#model">Model</a>
+         </li>
+
+         <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#fuel">Fuel</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#gearbox">Gearbox</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#carclass"
+               >Car class</a
+            >
+         </li>
+      </ul>
+      <div class="tab-content">
+         <div id="mark" class="tab-pane fade show active">
+            <div class="container">
+               <div>
+                  <button
+                     type="button"
+                     class="btn btn-success btn-sm m-2"
+                     data-toggle="modal"
+                     data-target="#markModal"
+                     (click)="newNotEdit()"
+                  >
+                     New
+                  </button>
+               </div>
+               <div>
+                  <table class="table table-hover">
+                     <thead class="thead-dark">
+                        <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Name</th>
+                           <th scope="col">Edit</th>
+                           <th scope="col">Delete</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let mark of marks; let i = index">
+                           <td>{{ i + 1 }}</td>
+                           <td>{{ mark.name }}</td>
+                           <td>
+                              <button
+                                 class="btn btn-info btn-sm"
+                                 data-toggle="modal"
+                                 data-target="#markModal"
+                                 (click)="setMark(mark)"
+                              >
+                                 Edit
+                              </button>
+                           </td>
+                           <td>
+                              <button
+                                 class="btn btn-danger btn-sm"
+                                 (click)="deleteMark(mark)"
+                              >
+                                 Delete
+                              </button>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div id="model" class="tab-pane fade show">
+            <div class="container">
+               <div>
+                  <button
+                     type="button"
+                     class="btn btn-success btn-sm m-2"
+                     data-toggle="modal"
+                     data-target="#modelModal"
+                     (click)="newNotEdit()"
+                  >
+                     New
+                  </button>
+               </div>
+               <div>
+                  <table class="table table-hover">
+                     <thead class="thead-dark">
+                        <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Mark name</th>
+                           <th scope="col">Name</th>
+                           <th scope="col">Edit</th>
+                           <th scope="col">Delete</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let model of models; let i = index">
+                           <td>{{ i + 1 }}</td>
+                           <td>{{ model.mark.name }}</td>
+                           <td>{{ model.name }}</td>
+                           <td>
+                              <button
+                                 class="btn btn-info btn-sm"
+                                 data-toggle="modal"
+                                 data-target="#modelModal"
+                                 (click)="setModel(model)"
+                              >
+                                 Edit
+                              </button>
+                           </td>
+                           <td>
+                              <button
+                                 class="btn btn-danger btn-sm"
+                                 (click)="deleteModel(model)"
+                              >
+                                 Delete
+                              </button>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div id="fuel" class="tab-pane fade show">
+            <div class="container">
+               <div>
+                  <button
+                     type="button"
+                     class="btn btn-success btn-sm m-2"
+                     data-toggle="modal"
+                     data-target="#fuelModal"
+                     (click)="newNotEdit()"
+                  >
+                     New
+                  </button>
+               </div>
+               <div>
+                  <table class="table table-hover">
+                     <thead class="thead-dark">
+                        <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Type</th>
+                           <th scope="col">Edit</th>
+                           <th scope="col">Delete</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let fuel of fuels; let i = index">
+                           <td>{{ i + 1 }}</td>
+                           <td>{{ fuel.type }}</td>
+                           <td>
+                              <button
+                                 class="btn btn-info btn-sm"
+                                 data-toggle="modal"
+                                 data-target="#fuelModal"
+                                 (click)="setFuel(fuel)"
+                              >
+                                 Edit
+                              </button>
+                           </td>
+                           <td>
+                              <button
+                                 class="btn btn-danger btn-sm"
+                                 (click)="deleteFuel(fuel)"
+                              >
+                                 Delete
+                              </button>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div id="gearbox" class="tab-pane fade show">
+            <div class="container">
+               <div>
+                  <button
+                     type="button"
+                     class="btn btn-success btn-sm m-2"
+                     data-toggle="modal"
+                     data-target="#gearboxModal"
+                     (click)="newNotEdit()"
+                  >
+                     New
+                  </button>
+               </div>
+               <div>
+                  <table class="table table-hover">
+                     <thead class="thead-dark">
+                        <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Type</th>
+                           <th scope="col">Edit</th>
+                           <th scope="col">Delete</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let gearbox of gearboxes; let i = index">
+                           <td>{{ i + 1 }}</td>
+                           <td>{{ gearbox.type }}</td>
+                           <td>
+                              <button
+                                 class="btn btn-info btn-sm"
+                                 data-toggle="modal"
+                                 data-target="#gearboxModal"
+                                 (click)="setGearbox(gearbox)"
+                              >
+                                 Edit
+                              </button>
+                           </td>
+                           <td>
+                              <button
+                                 class="btn btn-danger btn-sm"
+                                 (click)="deleteGearbox(gearbox)"
+                              >
+                                 Delete
+                              </button>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div id="carclass" class="tab-pane fade show">
+            <div class="container">
+               <div>
+                  <button
+                     type="button"
+                     class="btn btn-success btn-sm m-2"
+                     data-toggle="modal"
+                     data-target="#carclassModal"
+                     (click)="newNotEdit()"
+                  >
+                     New
+                  </button>
+               </div>
+               <div>
+                  <table class="table table-hover">
+                     <thead class="thead-dark">
+                        <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Name</th>
+                           <th scope="col">Edit</th>
+                           <th scope="col">Delete</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let carclass of carclasses; let i = index">
+                           <td>{{ i + 1 }}</td>
+                           <td>{{ carclass.name }}</td>
+                           <td>
+                              <button
+                                 class="btn btn-info btn-sm"
+                                 data-toggle="modal"
+                                 data-target="#carclassModal"
+                                 (click)="setCarclass(carclass)"
+                              >
+                                 Edit
+                              </button>
+                           </td>
+                           <td>
+                              <button
+                                 class="btn btn-danger btn-sm"
+                                 (click)="deleteCarclass(carclass)"
+                              >
+                                 Delete
+                              </button>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Modal -->
+   <div
+      class="modal fade"
+      id="markModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+   >
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Title</h5>
+               <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+               >
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <form
+               [formGroup]="markForm"
+               (ngSubmit)="nameSubmit(markForm.value)"
+            >
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label for="message-text" class="col-form-label"
+                        >Name:</label
+                     >
+                     <textarea
+                        class="form-control"
+                        id="message-text"
+                        formControlName="name"
+                     ></textarea>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-dismiss="modal"
+                     #closebuttonmark
+                  >
+                     Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                     Submit
+                  </button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   <!-- Modal -->
+   <div
+      class="modal fade"
+      id="modelModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+   >
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Model</h5>
+               <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+               >
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <form
+               [formGroup]="modelForm"
+               (ngSubmit)="modelSubmit(modelForm.value)"
+            >
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label for="message-text" class="col-form-label"
+                        >Name:</label
+                     >
+                     <textarea
+                        class="form-control"
+                        id="message-text"
+                        formControlName="name"
+                     ></textarea>
+                  </div>
+                  <div class="form-group">
+                     <label for="mark-select" class="col-form-label"
+                        >Mark:</label
+                     >
+                     <select
+                        name="form-control"
+                        id="mark-select"
+                        formControlName="markId"
+                     >
+                        <option *ngFor="let mark of marks" [value]="mark.id">{{
+                           mark.name
+                        }}</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-dismiss="modal"
+                     #closebuttonmodel
+                  >
+                     Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                     Submit
+                  </button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   <!-- Modal -->
+   <div
+      class="modal fade"
+      id="fuelModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+   >
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Title</h5>
+               <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+               >
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <form
+               [formGroup]="fuelForm"
+               (ngSubmit)="fuelSubmit(fuelForm.value)"
+            >
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label for="message-text" class="col-form-label"
+                        >Type:</label
+                     >
+                     <textarea
+                        class="form-control"
+                        id="message-text"
+                        formControlName="type"
+                     ></textarea>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-dismiss="modal"
+                     #closebuttonfuel
+                  >
+                     Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                     Submit
+                  </button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   <!-- Modal -->
+   <div
+      class="modal fade"
+      id="gearboxModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+   >
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Title</h5>
+               <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+               >
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <form
+               [formGroup]="typeForm"
+               (ngSubmit)="gearboxSubmit(typeForm.value)"
+            >
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label for="message-text" class="col-form-label"
+                        >Type:</label
+                     >
+                     <textarea
+                        class="form-control"
+                        id="message-text"
+                        formControlName="type"
+                     ></textarea>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-dismiss="modal"
+                     #closebuttongearbox
+                  >
+                     Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                     Submit
+                  </button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   <!-- Modal -->
+   <div
+      class="modal fade"
+      id="carclassModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+   >
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Title</h5>
+               <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+               >
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <form
+               [formGroup]="nameForm"
+               (ngSubmit)="carclassSubmit(nameForm.value)"
+            >
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label for="message-text" class="col-form-label"
+                        >Name:</label
+                     >
+                     <textarea
+                        class="form-control"
+                        id="message-text"
+                        formControlName="name"
+                     ></textarea>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-dismiss="modal"
+                     #closebuttoncarclass
+                  >
+                     Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                     Submit
+                  </button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
