@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
@@ -9,18 +9,20 @@ import { interval, Subscription } from 'rxjs';
 export class MapComponent implements OnInit {
   subscription: Subscription;
   intervalId: number;
-  position : [number, number] = [44.751952, 21.600739];
+  position: [number, number] = [44.751952, 21.600739];
 
-  constructor() { }
+  constructor(private ref: ChangeDetectorRef) {
+  }
 
   ngOnInit(): void {
     const source = interval(10000);
     this.subscription = source.subscribe(val => this.getPosition());
   }
 
-  getPosition(){
-      this.position = [this.position[0] + 0.5, this.position[1] + 0.5]
-      console.log(this.position);
+  getPosition() {
+    this.position = [this.position[0] + 0.5, this.position[1] + 0.5]
+    console.log(this.position);
+    this.ref.detectChanges();
   }
 
   ngOnDestroy() {

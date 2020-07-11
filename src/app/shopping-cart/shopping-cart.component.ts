@@ -5,6 +5,7 @@ import { FormArray, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { IBundle } from './shared/ibundle.rent';
 import { ShoppingService } from './shared/shopping.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ICartUsers } from './shared/icarusers.cart';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,26 +13,38 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  requests: IRequest[];
+  requests: IRequest[] = [];
   map: Map<number, IRequest[]> = new Map();
-  keys: IterableIterator<number>;
-  bundles: number[] = [1];
+  keys: number[] = [];
+  bundles: number[] = [];
 
-  constructor(private shoppingService: ShoppingService, private router: Router, private route: ActivatedRoute) {
+  bundleForm: FormGroup;
+  usersMap: Map<number, number>;
+
+  constructor(private shoppingService: ShoppingService, private router: Router, private route: ActivatedRoute,
+    private formBuilder: FormBuilder) {
 
   }
 
   ngOnInit(): void {
+    let cars = { ads: [] };
     this.requests = JSON.parse(localStorage.getItem("Cart"));
-    if (this.requests != undefined || this.requests != null) {
-      for (let req of this.requests) {
-        if (!this.map.has(req.userId)) {
-          this.map.set(req.userId, []);
+    this.requests.forEach(element => {
+      cars.ads.push(element.adId);
+    });
+    this.shoppingService.getUsers(cars).subscribe(data => {
+      for (let r of this.requests) {
+        if (this.keys.indexOf(data.adUserMap[r.adId]) == -1)
+          this.keys.push(data.adUserMap[r.adId]);
+        r.userId = data.adUserMap[r.adId];
+        if (!this.map.has(r.userId)) {
+          this.map.set(r.userId, []);
         }
-        this.map.get(req.userId).push(req);
+
+        this.map.get(r.userId).push(r);
       }
-    }
-    this.keys = this.map.keys();
+    });
+    console.log(this.map);
   }
 
   onSubmit() {
@@ -88,9 +101,9 @@ export class ShoppingCartComponent implements OnInit {
 
   removeRequest(userId: number, req: IRequest) {
     let toRemove = this.map.get(userId).indexOf(req);
-    this.map.get(userId).splice(toRemove, toRemove);
+    this.map.get(userId).splice(toRemove, 1);
     toRemove = this.requests.indexOf(req);
-    this.requests.splice(toRemove, toRemove);
+    this.requests.splice(toRemove, 1);
     localStorage.setItem("Cart", JSON.stringify(this.requests));
   }
 
