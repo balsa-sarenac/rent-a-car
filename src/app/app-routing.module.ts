@@ -22,7 +22,10 @@ import { ProfileComponent } from './auth/profile/profile.component';
 import { BillComponent } from './bill/bill.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { RegistrationRequestComponent } from './auth/registration-request/registration-request.component';
+import { CarsComponent } from './car/cars/cars.component';
+import { EditCarComponent } from './car/edit-car/edit-car.component';
 import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
+
 
 
 const routes: Routes = [
@@ -48,11 +51,13 @@ const routes: Routes = [
       { path: 'received-requests', component: ReceivedRequestsComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'bill', component: BillComponent },
-      { path: 'car/:id', component: CarComponent },
+      { path: 'ad/:id', component: CarComponent },
       { path: 'new-car', component: NewCarComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'commentsAndGrades', component: CommentAndGradeComponent },
       { path: 'occupation', component: OccupationComponent },
+      { path: 'cars', component: CarsComponent },
+      { path: 'car/:id', component: EditCarComponent },
       { path: 'cart', component: ShoppingCartComponent }
     ]
   },
