@@ -131,7 +131,8 @@
                      </div>
                      <div id="ad" class="d-flex flex-row" *ngFor="let ad of ads" >
                            <div style="width: 25%; height: 150px;">
-                              <svg class="bd-placeholder-img card-img-top" width="150px" height="150px" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><rect width="100%" height="100%" fill="#55595c"/><text x="25%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                              <img src="{{ad.images[0]}}" *ngIf ="ad.images.length != 0" alt="slika" width="150" height="150"/>
+                              <svg class="bd-placeholder-img card-img-top" *ngIf ="ad.images.length == 0" width="150px" height="150px" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><rect width="100%" height="100%" fill="#55595c"/><text x="25%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                            </div>
                            <div class="d-flex flex-column" style="margin-left: 15px; width:25%">
                               <h6>{{ad.car.mark.name}} {{ad.car.model.name}}</h6>
@@ -182,13 +183,14 @@
       <div class="d-flex flex-column">
          <div class="d-flex flex-row">
             <div class="d-flex flex-column" id="d1" style="width: 40%;">
-               <div class="card mb-4 shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+               <div class="card mb-4 shadow-sm">          
+                  <img [src]="picture" alt="slika" width="280" height="250"/>
+                  {{count+1}} / {{ad.images.length}}
                   <div class="card-body">
                      <div class="d-flex justify-content-between align-items-center">
                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">previous</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">next</button>
+                        <button type="button" [disabled] = "ad.images.length == 0" class="btn btn-sm btn-outline-secondary" (click) = "previous()">previous</button>
+                        <button type="button" [disabled] = "ad.images.length == 0" class="btn btn-sm btn-outline-secondary" (click) = "next()">next</button>
                      </div>
                      </div>
                   </div>
@@ -239,8 +241,15 @@
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                <h6 class="border-bottom border-gray pb-2 mb-0">Comments</h6>
                <div class="media text-muted pt-3" *ngFor = " let comment of comments">
-                 <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                 <svg class="bd-placeholder-img mr-2 rounded"
+                  width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+                   preserveAspectRatio="xMidYMid slice" focusable="false"
+                    role="img" aria-label="Placeholder: 32x32">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#007bff"/>
+                    <text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+                  </svg>
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                    <strong class="d-block text-gray-dark">@{{comment.userUsername}}</strong>
                    {{comment.text}}
                  </p>
