@@ -86,7 +86,7 @@ export class CarService {
 
   getStatistics() {
     let id = localStorage.getItem("Id");
-    return this.http.get<any>(environment.api + "/car/statistics/" + id);
+    return this.http.get<any>(environment.api + "/car/car/statistics/" + id);
   }
 
   getCarModels() {
