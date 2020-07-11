@@ -122,8 +122,10 @@ export class CarService {
   getPriceLists() {
     return this.http.get<PriceList[]>(environment.api + "/car/priceList/" + localStorage.getItem("Username"));
   }
+
   getCarById(id: number) {
-    return this.http.get<any>("http://localhost:8080/car/" + id);
+    //return this.http.get<any>("http://localhost:8080/car/" + id);
+    return this.http.get<any>(environment.api + "/car/car/" + id);
   }
 
 }
