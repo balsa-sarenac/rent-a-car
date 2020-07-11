@@ -21,6 +21,7 @@ export class HomepageAdminComponent implements OnInit {
     localStorage.removeItem("Username");
     localStorage.removeItem("User-role");
     localStorage.removeItem("Refresh-token");
+    localStorage.removeItem("Id");
     this.router.navigate(['unregistredHomepage']);
     this.toastr.success('Successfully logged out', 'Logout');
   }
