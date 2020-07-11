@@ -25,7 +25,7 @@ export class ChatComponent implements OnInit {
   }
 
   getMessages() {
-    this.chatService.getMessages(1)
+    this.chatService.getMessages(+localStorage.getItem("Id"))
       .subscribe((data: Chat[]) => this.chats = data);
   }
 
