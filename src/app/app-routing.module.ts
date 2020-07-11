@@ -24,6 +24,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { RegistrationRequestComponent } from './auth/registration-request/registration-request.component';
 import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
 import { MapComponent } from './map/map.component';
+import { CodebookComponent } from './car/codebook/codebook.component';
 
 
 const routes: Routes = [
@@ -65,7 +66,8 @@ const routes: Routes = [
       { path: 'comments', component: CommentComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'requests', component: RegistrationRequestComponent }
+      { path: 'requests', component: RegistrationRequestComponent },
+      { path: 'codebook', component: CodebookComponent }
     ]
   },
 
