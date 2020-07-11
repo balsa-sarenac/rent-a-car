@@ -25,6 +25,7 @@ import { RegistrationRequestComponent } from './auth/registration-request/regist
 import { CarsComponent } from './car/cars/cars.component';
 import { EditCarComponent } from './car/edit-car/edit-car.component';
 import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
+import { MapComponent } from './map/map.component';
 
 
 
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'search', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'car/:id', component: CarComponent },
+      { path: 'map', component: MapComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'search', component: SearchComponent }
     ]
