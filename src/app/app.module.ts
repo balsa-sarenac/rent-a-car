@@ -38,6 +38,8 @@ import { RegistrationRequestComponent } from './auth/registration-request/regist
 import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
 import { MapComponent } from './map/map.component';
 import { AngularYandexMapsModule , IConfig} from 'angular8-yandex-maps';
+import { CarsComponent } from './car/cars/cars.component';
+import { EditCarComponent } from './car/edit-car/edit-car.component';
 
 const mapConfig: IConfig = {
   apikey: 'API_KEY',
@@ -69,6 +71,8 @@ const mapConfig: IConfig = {
     RegistrationRequestComponent,
     ReceivedRequestsComponent,
     MapComponent,
+    CarsComponent,
+    EditCarComponent,
   ],
   imports: [NgbModule, BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
     ToastrModule.forRoot({
