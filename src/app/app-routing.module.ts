@@ -24,6 +24,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { RegistrationRequestComponent } from './auth/registration-request/registration-request.component';
 import { ReceivedRequestsComponent } from './requests/received-requests/received-requests.component';
 import { MapComponent } from './map/map.component';
+import { CarsComponent } from './car/cars/cars.component';
 
 
 const routes: Routes = [
@@ -55,7 +56,8 @@ const routes: Routes = [
       { path: 'statistics', component: StatisticsComponent },
       { path: 'commentsAndGrades', component: CommentAndGradeComponent },
       { path: 'occupation', component: OccupationComponent },
-      { path: 'cart', component: ShoppingCartComponent }
+      { path: 'cart', component: ShoppingCartComponent },
+      { path: 'cars', component: CarsComponent }
     ]
   },
   {
