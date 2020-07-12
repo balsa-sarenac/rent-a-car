@@ -56,7 +56,7 @@ export class AuthService {
   }
 
   editUser(user: User) {
-    return this.http.patch(environment.api + '/security/', {
+    return this.http.patch(environment.api + '/security', {
       id: user.id,
       companyName: user.companyName,
       businessID: user.businessID,

@@ -18,7 +18,7 @@ export class ChatService {
 
 
   getMessages(userId: Number) {
-    return this.http.get<Chat[]>(environment.api + "/admin/message/1");
+    return this.http.get<Chat[]>(environment.api + "/admin/message");
   }
 
 }
