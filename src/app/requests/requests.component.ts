@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IRequest } from './shared/irequest.request';
 import { RequestService } from './shared/request.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -18,6 +18,8 @@ import { GradeService } from '../comment/shared/grade.service';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
+  @ViewChild('dismissbutton') closeButton;
+
   all: IRequest[];
   pending: IRequest[];
   paid: IRequest[];
@@ -84,6 +86,7 @@ export class RequestsComponent implements OnInit {
       );
 
     this.messageForm.reset();
+    this.closeButton.nativeElement.click();
   }
 
   setCompanion(req: IRequest) {
