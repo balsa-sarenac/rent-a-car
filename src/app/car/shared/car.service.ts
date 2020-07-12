@@ -115,8 +115,8 @@ export class CarService {
   }
 
   getCarGearboxes() {
-    return this.http.get<Gearbox[]>(environment.api + "/car/gearbox");
-    // return this.http.get<any>("http://localhost:8080/gearbox");
+    // return this.http.get<Gearbox[]>(environment.api + "/car/gearbox");
+    return this.http.get<any>("http://localhost:8080/gearbox");
   }
 
   getCarFuels() {
