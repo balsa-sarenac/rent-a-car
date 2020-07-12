@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RequestService } from '../shared/request.service';
 import { IAllRequests } from '../shared/irequests.all';
 import { IRequest } from '../shared/irequest.request';
@@ -15,6 +15,8 @@ import { IReport } from '../shared/ireport.report';
   styleUrls: ['./received-requests.component.css']
 })
 export class ReceivedRequestsComponent implements OnInit {
+  @ViewChild('dismissbutton') closeButton;
+
   all: IRequest[];
   pending: IRequest[];
   paid: IRequest[];
@@ -123,6 +125,7 @@ export class ReceivedRequestsComponent implements OnInit {
       );
 
     this.messageForm.reset();
+    this.closeButton.nativeElement.click();
   }
 
   setCompanion(req: IRequest) {
