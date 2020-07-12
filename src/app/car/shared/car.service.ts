@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { Ad } from './ad';
 import { Car } from './car';
 import { PriceList } from './priceList';
+import { CarInfo } from './carInfo';
 
 
 @Injectable()
@@ -55,6 +56,13 @@ export class CarService {
     return this.http.get<any>(environment.api + "/car/ad/" + id);
     //return this.http.get<any>("http://localhost:8080/ad/" + id);
   }
+
+  getOneAdSearch(id: number) {
+     return this.http.get<any>(environment.api + "/search/ad/" + id);
+    //return this.http.get<any>(environment.api + "/car/ad/" + id);
+    //return this.http.get<any>("http://localhost:8080/ad/" + id);
+  }
+
 
   postNewAd(userData) {
     console.log(userData);
@@ -126,6 +134,28 @@ export class CarService {
   getCarById(id: number) {
     //return this.http.get<any>("http://localhost:8080/car/" + id);
     return this.http.get<any>(environment.api + "/car/car/" + id);
+  }
+
+  editCar(car: CarInfo){
+    /*return this.http.patch("http://localhost:8080/car", {
+                                                            id: car.id,
+                                                            kilometrage: car.kilometrage,
+                                                            fuel: car.fuel,
+                                                            hasAndroid: car.hasAndroid,
+                                                            numberOfChildSeats: car.numberOfChildSeats,
+                                                            gearbox: car.gearbox,
+                                                            carClass: car.carClass
+                                                          });
+  }*/
+  return this.http.patch(environment.api + "/car/car", {
+                                                            id: car.id,
+                                                            kilometrage: car.kilometrage,
+                                                            fuel: car.fuel,
+                                                            hasAndroid: car.hasAndroid,
+                                                            numberOfChildSeats: car.numberOfChildSeats,
+                                                            gearbox: car.gearbox,
+                                                            carClass: car.carClass
+                                                          });
   }
 
 }

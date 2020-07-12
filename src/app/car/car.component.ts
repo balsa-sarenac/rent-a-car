@@ -5,6 +5,7 @@ import { IComment } from '../comment/shared/comment';
 import { AdInfo } from './shared/adInfo';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-car',
@@ -21,7 +22,7 @@ export class CarComponent implements OnInit {
   private sub: any;
   role: string = '';
 
-  constructor(private carService: CarService, private _location: Location,
+  constructor(private carService: CarService, private _toastr: ToastrService, private _location: Location,
     private commentService: CommentService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -52,11 +53,21 @@ export class CarComponent implements OnInit {
       approved: false,
       role: localStorage.getItem("User-role"),
       text: this.commentText,
-      userUsername: 'agent',
+      userUsername: localStorage.getItem("Username"),
       id: null,
-      carId: null
+      carId: this.ad.car.id
     };
-    this.commentService.createComment(this.comment).subscribe();
+    this.commentService.createCommentReply(this.comment).subscribe(
+      data=>{
+        this._toastr.success("Comment succesfully created", "Comment");
+      },
+      error =>{
+        if(error.status == 400)
+          this._toastr.info("Comment already sent", "Comment");
+        else
+          this._toastr.error("Error creating comment", "Comment");
+      }
+    );
     this.commentText = "";
   }
 

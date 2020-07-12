@@ -36,6 +36,8 @@ export class SearchComponent implements OnInit {
   sortSelected: string = 'Sort by';
   ad: AdInfo;
   comments: IComment[];
+  picture: {};
+  count: number = 0;
 
   constructor(private carService: CarService,
     private route: ActivatedRoute,
@@ -163,9 +165,13 @@ export class SearchComponent implements OnInit {
   }
 
   view(content, ad: AdInfo) {
-    this.carService.getOneAd(ad.id).subscribe(
+    this.picture = {};
+    this.count = 0;
+    this.carService.getOneAdSearch(ad.id).subscribe(
       data => {
         this.ad = data;
+        this.picture = this.ad.images[0];
+        this.count = 0;
         this.commentService.getCommentsForCar(this.ad.car.id).subscribe(
           data => {
             this.comments = data
@@ -179,6 +185,24 @@ export class SearchComponent implements OnInit {
 
   sort() {
     this.searchAds(0);
+  }
+
+  next(){
+    if(this.count == this.ad.images.length - 1){
+        this.count = 0;
+    }else{
+      this.count = this.count + 1;
+    }
+    this.picture = this.ad.images[this.count];
+  }
+
+  previous(){
+    if(this.count == 0){
+      this.count = this.ad.images.length-1;
+    }else{
+      this.count = this.count - 1;
+    }
+    this.picture = this.ad.images[this.count];
   }
 
   addToCart(ad: AdInfo) {

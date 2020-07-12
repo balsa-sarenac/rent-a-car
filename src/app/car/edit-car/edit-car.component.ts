@@ -5,6 +5,8 @@ import { Gearbox } from '../shared/gearbox';
 import { CarClass } from '../shared/carclass';
 import { CarService } from '../shared/car.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-car',
@@ -19,10 +21,13 @@ export class EditCarComponent implements OnInit {
   car_id: number;
   private sub: any;
   average_grade: number;
+ 
 
   constructor(private carService: CarService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private _toastr: ToastrService,
+              private _location: Location) { }
 
   ngOnInit(): void {
     this.getData();
@@ -33,21 +38,33 @@ export class EditCarComponent implements OnInit {
       this.car_id = +params['id'];});
 
     this.carService.getCarById(this.car_id)
-      .subscribe((data: CarInfo) => this.car = data);
+      .subscribe((data: CarInfo) => {
+        this.car = data;
+        this.average_grade = this.car.overallGrade / this.car.numberGrades;
+      });
 
-    this.carService.getGearboxes()
+    this.carService.getCarGearboxes()
       .subscribe((data: Gearbox[]) => this.gearboxes = data);
 
-    this.carService.getFuels()
+    this.carService.getCarFuels()
       .subscribe((data: Fuel[]) => this.fuels = data);
 
-    this.carService.getCarClasses()
+    this.carService.getCarCarClasses()
       .subscribe((data: CarClass[]) => this.carClasses = data);
 
-    this.average_grade = this.car.overallGrade / this.car.numberGrades;
   }
 
   onSubmit(): void {
+    this.carService.editCar(this.car).subscribe(
+      data =>{
+        this._toastr.success("Car successfully updated","Car");
+        this._location.back();
+      }
+    );
+  }
+
+  back() {
+    this._location.back();
   }
 
 }
