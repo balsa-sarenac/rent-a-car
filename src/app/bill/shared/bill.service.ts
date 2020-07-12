@@ -10,12 +10,12 @@ export class BillService {
   constructor(private http: HttpClient) { }
 
   getBills(username: string) {
-    //return this.http.get<any>('http://localhost:8080/bill/' + username);
-    return this.http.get<any>(environment.api + '/request/bill/' + username);
+    return this.http.get<any>('http://localhost:8080/bill/' + username);
+    // return this.http.get<any>(environment.api + '/request/bill/' + username);
   }
 
   payBill(id: number) {
-    //return this.http.patch<any>('http://localhost:8080/bill/pay/' + id,{});
-    return this.http.patch<any>(environment.api + '/request/bill/pay/' + id, {});
+    return this.http.patch<any>('http://localhost:8080/bill/pay/' + id,{});
+    // return this.http.patch<any>(environment.api + '/request/bill/pay/' + id, {});
   }
 }

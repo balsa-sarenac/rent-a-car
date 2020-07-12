@@ -98,46 +98,47 @@ export class CarService {
   }
 
   getCarModels() {
-    return this.http.get<Model[]>(environment.api + "/car/model");
-    //return this.http.get<any>("http://localhost:8080/model");
+    // return this.http.get<Model[]>(environment.api + "/car/model");
+    return this.http.get<any>("http://localhost:8080/model");
   }
 
   getCarCities() {
-    return this.http.get<any>(environment.api + "/car/ad/city");
-    //return this.http.get<any>("http://localhost:8080/ad/city");
+    // return this.http.get<any>(environment.api + "/car/ad/city");
+    return this.http.get<any>("http://localhost:8080/ad/city");
   }
 
   getCarMarks() {
-    return this.http.get<Mark[]>(environment.api + "/car/mark");
-    //return this.http.get<any>("http://localhost:8080/mark");
+    // return this.http.get<Mark[]>(environment.api + "/car/mark");
+    return this.http.get<any>("http://localhost:8080/mark");
   }
 
   getCarGearboxes() {
     return this.http.get<Gearbox[]>(environment.api + "/car/gearbox");
-    //return this.http.get<any>("http://localhost:8080/gearbox");
+    // return this.http.get<any>("http://localhost:8080/gearbox");
   }
 
   getCarFuels() {
-    return this.http.get<Fuel[]>(environment.api + "/car/fuel");
-    //return this.http.get<any>("http://localhost:8080/fuel");
+    // return this.http.get<Fuel[]>(environment.api + "/car/fuel");
+    return this.http.get<any>("http://localhost:8080/fuel");
   }
 
   getCarCarClasses() {
-    return this.http.get<CarClass[]>(environment.api + "/car/carclass");
-    //return this.http.get<any>("http://localhost:8080/carclass");
+    // return this.http.get<CarClass[]>(environment.api + "/car/carclass");
+    return this.http.get<any>("http://localhost:8080/carclass");
   }
 
   getPriceLists() {
-    return this.http.get<PriceList[]>(environment.api + "/car/priceList/" + localStorage.getItem("Username"));
+    return this.http.get<PriceList[]>("http://localhost:8080/priceList/" + localStorage.getItem("Username"));
+    // return this.http.get<PriceList[]>(environment.api + "/car/priceList/" + localStorage.getItem("Username"));
   }
 
   getCarById(id: number) {
-    //return this.http.get<any>("http://localhost:8080/car/" + id);
-    return this.http.get<any>(environment.api + "/car/car/" + id);
+    return this.http.get<any>("http://localhost:8080/car/" + id);
+    // return this.http.get<any>(environment.api + "/car/car/" + id);
   }
 
   editCar(car: CarInfo){
-    /*return this.http.patch("http://localhost:8080/car", {
+    return this.http.patch("http://localhost:8080/car", {
                                                             id: car.id,
                                                             kilometrage: car.kilometrage,
                                                             fuel: car.fuel,
@@ -145,9 +146,8 @@ export class CarService {
                                                             numberOfChildSeats: car.numberOfChildSeats,
                                                             gearbox: car.gearbox,
                                                             carClass: car.carClass
-                                                          });
-  }*/
-  return this.http.patch(environment.api + "/car/car", {
+                                                          });/*
+    return this.http.patch(environment.api + "/car/car", {
                                                             id: car.id,
                                                             kilometrage: car.kilometrage,
                                                             fuel: car.fuel,
@@ -155,7 +155,7 @@ export class CarService {
                                                             numberOfChildSeats: car.numberOfChildSeats,
                                                             gearbox: car.gearbox,
                                                             carClass: car.carClass
-                                                          });
+                                                          });*/
   }
-
+ 
 }

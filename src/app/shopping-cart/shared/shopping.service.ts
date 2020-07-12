@@ -12,11 +12,13 @@ export class ShoppingService {
   constructor(private httpClient: HttpClient) { }
 
   rentCars(cart: ICart) {
-    return this.httpClient.post<ICart>(environment.api + "/request", cart);
+    return this.httpClient.post<ICart>("http://localhost:8080/request", cart);
+    // return this.httpClient.post<ICart>(environment.api + "/request", cart);
   }
 
   getUsers(cars) {
-    return this.httpClient.post<ICartUsers>(environment.api + "/car/ad/users-cars", cars);
+    return this.httpClient.post<ICartUsers>("http://localhost:8080/ad/users-cars", cars);
+    // return this.httpClient.post<ICartUsers>(environment.api + "/car/ad/users-cars", cars);
   }
 
 }
