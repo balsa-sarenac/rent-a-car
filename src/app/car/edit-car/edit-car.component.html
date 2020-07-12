@@ -1,58 +1,39 @@
 <div class="d-flex justify-content-center">
-    <form
-        (ngSubmit)="onSubmit()"
-    >
         <div class="d-flex flex-column">
+            <div class="d-flex flex-row" style="margin-top: 5px;">
+                <button class="btn btn-outline-info" (click)="back()">Back</button>
+             </div>
             <h1> {{car.mark.name}}  {{car.model.name}} </h1>
             <h6> Kilometrage: {{car.kilometrage}} km</h6>
             <h6> Average grade: {{average_grade}} </h6>
 
             <br>
             <label>Fuel</label>
-            <select
-                class="form-control"
-                id="fuel"
-            >
-                <option *ngFor="let fuel of fuels" [value]="car.fuel.type"> {{fuel.type}} </option>
-            </select>
+            <select class="form-control" [(ngModel)]= "car.fuel" id="carClass">
+                <option *ngFor="let fuel of fuels" [ngValue]="fuel">{{fuel.type}}</option>
+             </select>
 
             <br>
             <label>Class</label>
-            <select
-                class="form-control"
-                id="carClass"
-
-            >
-                <option *ngFor="let class of carClasses"> {{class.name}} </option>
-            </select>
+            <select class="form-control" [(ngModel)]= "car.carClass" id="carClass">
+                <option *ngFor="let class of carClasses" [ngValue]="class">{{class.name}}</option>
+             </select>
 
             <br>
             <label>Gearbox</label>
-            <select
-                class="form-control"
-                id="gearbox"
-
-            >
-                <option *ngFor="let gearbox of gearboxes"> {{gearbox.type}} </option>
-            </select>
+            <select class="form-control" [(ngModel)]= "car.gearbox" id="carClass">
+                <option *ngFor="let gearbox of gearboxes" [ngValue]="gearbox">{{gearbox.type}}</option>
+             </select>
 
             <br>
             <label>Number of child seats</label>
-            <input
-                class="form-control"
-                type="number"
-                id="numberOfChildSeats"
+            <input [(ngModel)] = "car.numberOfChildSeats" type="number" min="0" name="kiloemtrageFrom" id="kiloemtrageFrom" class="form-control"/>
 
-            />
 
             <br>
             <div class="col-sm">
-                <input
-                    class="form-check-input"
-                    value="false"
-                    type="checkbox"
-                    id="hasAndroid"
-                />
+                <input [(ngModel)] = "car.hasAndroid" type="checkbox" name="cdw" id="cdw" class="form-control"/>
+
                 <label
                     class="form-check-label"
                 >It has android</label>
@@ -62,9 +43,10 @@
             <button  
                 class="btn btn-primary"
                 type="submit"
+                (click) = "onSubmit()"
             >
                 Submit
             </button>
         </div>
-    </form>
+
 </div>
